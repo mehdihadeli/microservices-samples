@@ -1,0 +1,15 @@
+# send to discount service
+# @url = http://localhost:5010
+
+# send to APIGateway
+@url = http://localhost:5000
+
+### create discount
+POST {{url}}/discounts
+Content-Type: application/json
+
+{
+    "customerId": "e2e422de-2afa-49e2-948e-ecd7b1e6ecfd",
+    "code": "PROMO4",
+    "percentage": 20
+}

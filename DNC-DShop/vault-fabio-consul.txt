@@ -1,0 +1,3 @@
+Run Consule: consul agent -dev
+Run Fabio: fabio
+Run Vault: vault server -dev

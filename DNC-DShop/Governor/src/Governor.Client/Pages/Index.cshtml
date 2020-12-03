@@ -1,0 +1,86 @@
+﻿@page "/"
+@using Governor.Shared
+@inject HttpClient HttpClient;
+
+@if (_services == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>URL</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var service in _services)
+        {
+            <tr>
+                <td><strong>@service.Name</strong></td>
+                <td>
+                    <a href="@service.Url" target="_blank">@service.Url</a>
+                </td>
+                <td>
+                    @if (@service.IsRunning)
+                    {
+                        <span class="badge badge-success">RUNNING</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-warning">STOPPED</span>
+                    }
+                </td>
+                <td>
+                    @if (@service.IsRunning)
+                    {
+                        <button type="button" class="btn btn-danger" onclick="@(() => KillAsync(@service))">Kill</button>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-primary" onclick="@(() => StartAsync(@service))">Start</button>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table> 
+}
+
+@functions {
+
+    const string ApiUrl = "http://localhost:5020/services";
+    ServiceInfo[] _services;
+    
+    protected override async Task OnInitAsync()
+    {
+        _services = await HttpClient.GetJsonAsync<ServiceInfo[]>(ApiUrl);
+        await UpdateServicesAsync();
+    }
+
+    private async Task UpdateServicesAsync()
+    {
+        while (true)
+        {
+            _services = await HttpClient.GetJsonAsync<ServiceInfo[]>(ApiUrl);
+            StateHasChanged();
+            await Task.Delay(3000);
+        }
+    }
+
+    public async Task StartAsync(ServiceInfo service)
+    {
+        await HttpClient.PostAsync($"{ApiUrl}/{service.Name}/start", null);
+        service.IsRunning = true;
+    }
+    
+    public async Task KillAsync(ServiceInfo service)
+    {
+        await HttpClient.PostAsync($"{ApiUrl}/{service.Name}/kill", null);
+        service.IsRunning = false;
+    }
+}

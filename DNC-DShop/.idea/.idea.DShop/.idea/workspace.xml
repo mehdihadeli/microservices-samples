@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="012c9b15-d869-4acd-9c3a-0c65d2f3d84e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DShop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DShop/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Common/src/DShop.Common/Messages/IMessage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts/Domain/Customer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Common/src/DShop.Common/RabbitMq/RabbitMqOptions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Common/src/DShop.Common/Mongo/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Common/src/DShop.Common/RabbitMq/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Services.Discounts/tests/DShop.Services.Discounts.PactTests/OrdersPactTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Services.Discounts/tests/DShop.Services.Discounts.PactTests/OrderApiMock.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts/Handlers/Orders/OrderCompletedHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts/Handlers/Discounts/CreateDiscountHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Common/src/DShop.Common/IInitializer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Api/src/DShop.Api/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Api/src/DShop.Api/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Common/src/DShop.Common/AppOptions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Common/src/DShop.Common/StartupInitializer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Common/src/DShop.Common/Dispatchers/CommandDispatcher.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Handlers/GenericEventHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Common/src/DShop.Common/Dispatchers/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts/Messages/Commands/CreateDiscount.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Services.Customers/src/DShop.Services.Customers/Handlers/Orders/OrderCanceledHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts/Controllers/DiscountsController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Subscriptions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts/Repositories/DiscountsRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Api/src/DShop.Api/Messages/Commands/Discount/CreateDiscount.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Common/src/DShop.Common/Mvc/Extensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Services.Notifications/src/DShop.Services.Notifications/Handlers/OrderCreatedHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Api/src/DShop.Api/Controllers/DiscountsController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Api/src/DShop.Api/Controllers/BaseController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Services.Notifications/src/DShop.Services.Notifications/Messages/Events/OrderCreated.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Common/src/DShop.Common/Messages/MessageNamespaceAttribute.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DNC-DShop.Common/src/DShop.Common/Messages/ICommand.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/DNC-DShop.Common/src/DShop.Common/Dispatchers/CommandDispatcher.cs" />
+        <option value="$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts/Controllers/DiscountsController.cs" />
+        <option value="$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts/appsettings.json" />
+        <option value="$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts/Startup.cs" />
+        <option value="$PROJECT_DIR$/DNC-DShop.Api/src/DShop.Api/Controllers/DiscountController.cs" />
+        <option value="$PROJECT_DIR$/DNC-DShop.Api/src/DShop.Api/Controllers/DiscountsController.cs" />
+        <option value="$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts/Handlers/Discounts/CreateDiscountHandler.cs" />
+        <option value="$PROJECT_DIR$/DNC-DShop.Services.Discounts/tests/DShop.Services.Discounts.PactTests/OrderApiMock.cs" />
+        <option value="$PROJECT_DIR$/DNC-DShop.Services.Discounts/tests/DShop.Services.Discounts.PactTests/OrdersPactTests.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1QjTB4bOSSoNpQ99GAe0KzHGRLE" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/DNC-DShop.Services.Discounts/tests/DShop.Services.Discounts.PactTests/DShop.Services.Discounts.PactTests.csproj" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs.cucumber.cucumber_node_package_dir" value="" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Compound.All Projects">
+    <configuration name="APIGatewat + Discounts" type="CompoundRunConfigurationType">
+      <toRun name="Dshop.Services.Discounts" type="LaunchSettings" />
+      <toRun name="DShop.Api" type="LaunchSettings" />
+      <method v="2" />
+    </configuration>
+    <configuration name="All Projects" type="CompoundRunConfigurationType">
+      <toRun name="DShop.Services.Orders" type="LaunchSettings" />
+      <toRun name="DShop.Api" type="LaunchSettings" />
+      <toRun name="DShop.Services.Customers" type="LaunchSettings" />
+      <toRun name="DShop.Services.Identity" type="LaunchSettings" />
+      <toRun name="DShop.Services.Notifications" type="LaunchSettings" />
+      <toRun name="DShop.Services.Products" type="LaunchSettings" />
+      <toRun name="Dshop.Services.Discounts" type="LaunchSettings" />
+      <toRun name="DShop.Services.Operations" type="LaunchSettings" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="CompoundRunConfigurationType">
+      <toRun name="DShop.Services.Orders" type="LaunchSettings" />
+      <toRun name="DShop.Api" type="LaunchSettings" />
+      <toRun name="DShop.Services.Customers" type="LaunchSettings" />
+      <toRun name="DShop.Services.Identity" type="LaunchSettings" />
+      <toRun name="DShop.Services.Notifications" type="LaunchSettings" />
+      <toRun name="DShop.Services.Products" type="LaunchSettings" />
+      <toRun name="Dshop.Services.Discounts" type="LaunchSettings" />
+      <toRun name="DShop.Services.Operations" type="LaunchSettings" />
+      <method v="2" />
+    </configuration>
+    <configuration name="APIGateway" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/DNC-DShop.Api/src/DShop.Api/bin/Debug/netcoreapp2.2/DShop.Api.dll" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/DNC-DShop.Api/src/DShop.Api" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/DNC-DShop.Api/src/DShop.Api/DShop.Api.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value=".NETCoreApp,Version=v2.2" />
+      <browser url="http://localhost:5000/" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Discounts" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts/bin/Debug/netcoreapp2.2/DShop.Services.Discounts.dll" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts/DShop.Services.Discounts.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value=".NETCoreApp,Version=v2.2" />
+      <browser url="http://localhost:5010/" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts/bin/Debug/netcoreapp2.2/DShop.Services.Discounts.dll" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts/DShop.Services.Discounts.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value=".NETCoreApp,Version=v2.2" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DShop.Api" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Api/src/DShop.Api/DShop.Api.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.2" />
+      <option name="LAUNCH_PROFILE_NAME" value="DShop.Api" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DShop.Api: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Api/src/DShop.Api/DShop.Api.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.2" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DShop.Api.Next" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Api.Next/src/DShop.Api.Next/DShop.Api.Next.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="DShop.Api.Next" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DShop.Api.Next: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Api.Next/src/DShop.Api.Next/DShop.Api.Next.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DShop.Services.Customers" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Customers/src/DShop.Services.Customers/DShop.Services.Customers.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.2" />
+      <option name="LAUNCH_PROFILE_NAME" value="DShop.Services.Customers" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DShop.Services.Customers: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Customers/src/DShop.Services.Customers/DShop.Services.Customers.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.2" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DShop.Services.Identity" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Identity/src/DShop.Services.Identity/DShop.Services.Identity.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.2" />
+      <option name="LAUNCH_PROFILE_NAME" value="DShop.Services.Identity" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DShop.Services.Identity: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Identity/src/DShop.Services.Identity/DShop.Services.Identity.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.2" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DShop.Services.Notifications" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Notifications/src/DShop.Services.Notifications/DShop.Services.Notifications.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.2" />
+      <option name="LAUNCH_PROFILE_NAME" value="DShop.Services.Notifications" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DShop.Services.Notifications: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Notifications/src/DShop.Services.Notifications/DShop.Services.Notifications.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.2" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DShop.Services.Operations" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/DShop.Services.Operations.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.2" />
+      <option name="LAUNCH_PROFILE_NAME" value="DShop.Services.Operations" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DShop.Services.Operations: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/DShop.Services.Operations.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.2" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DShop.Services.Orders" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Orders/src/DShop.Services.Orders/DShop.Services.Orders.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.2" />
+      <option name="LAUNCH_PROFILE_NAME" value="DShop.Services.Orders" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DShop.Services.Orders: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Orders/src/DShop.Services.Orders/DShop.Services.Orders.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.2" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DShop.Services.Products" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Products/src/DShop.Services.Products/DShop.Services.Products.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.2" />
+      <option name="LAUNCH_PROFILE_NAME" value="DShop.Services.Products" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DShop.Services.Products: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Products/src/DShop.Services.Products/DShop.Services.Products.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.2" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DShop.Services.Signalr" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Signalr/src/DShop.Services.Signalr/DShop.Services.Signalr.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.2" />
+      <option name="LAUNCH_PROFILE_NAME" value="DShop.Services.Signalr" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DShop.Services.Signalr: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Signalr/src/DShop.Services.Signalr/DShop.Services.Signalr.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.2" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Dshop.Services.Discounts" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts/DShop.Services.Discounts.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.2" />
+      <option name="LAUNCH_PROFILE_NAME" value="DShop.Services.Discounts" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/DNC-DShop.Services.Discounts/src/DShop.Services.Discounts/DShop.Services.Discounts.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v2.2" />
+      <option name="LAUNCH_PROFILE_NAME" value="DShop.Services.Discounts" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue=".NET Launch Settings Profile.DShop.Api" />
+      <item itemvalue=".NET Launch Settings Profile.Dshop.Services.Discounts" />
+      <item itemvalue=".NET Launch Settings Profile.DShop.Api.Next" />
+      <item itemvalue=".NET Launch Settings Profile.DShop.Api.Next: IIS Express" />
+      <item itemvalue=".NET Launch Settings Profile.DShop.Api: IIS Express" />
+      <item itemvalue=".NET Launch Settings Profile.DShop.Services.Customers" />
+      <item itemvalue=".NET Launch Settings Profile.DShop.Services.Customers: IIS Express" />
+      <item itemvalue=".NET Launch Settings Profile.DShop.Services.Identity" />
+      <item itemvalue=".NET Launch Settings Profile.DShop.Services.Identity: IIS Express" />
+      <item itemvalue=".NET Launch Settings Profile.DShop.Services.Notifications" />
+      <item itemvalue=".NET Launch Settings Profile.DShop.Services.Notifications: IIS Express" />
+      <item itemvalue=".NET Launch Settings Profile.DShop.Services.Operations" />
+      <item itemvalue=".NET Launch Settings Profile.DShop.Services.Operations: IIS Express" />
+      <item itemvalue=".NET Launch Settings Profile.DShop.Services.Orders" />
+      <item itemvalue=".NET Launch Settings Profile.DShop.Services.Orders: IIS Express" />
+      <item itemvalue=".NET Launch Settings Profile.DShop.Services.Products" />
+      <item itemvalue=".NET Launch Settings Profile.DShop.Services.Products: IIS Express" />
+      <item itemvalue=".NET Launch Settings Profile.DShop.Services.Signalr" />
+      <item itemvalue=".NET Launch Settings Profile.DShop.Services.Signalr: IIS Express" />
+      <item itemvalue=".NET Project.APIGateway" />
+      <item itemvalue=".NET Project.Discounts" />
+      <item itemvalue="Compound.All Projects" />
+      <item itemvalue="Compound.APIGatewat + Discounts" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="012c9b15-d869-4acd-9c3a-0c65d2f3d84e" name="Default Changelist" comment="" />
+      <created>1568282873333</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1568282873333</updated>
+      <workItem from="1568282880973" duration="2847000" />
+      <workItem from="1568363358673" duration="2025000" />
+      <workItem from="1568367418896" duration="9151000" />
+      <workItem from="1568742673924" duration="1062000" />
+      <workItem from="1568872759760" duration="9252000" />
+      <workItem from="1568890782934" duration="1915000" />
+      <workItem from="1570516544984" duration="1922000" />
+      <workItem from="1572872678064" duration="1738000" />
+      <workItem from="1572940677233" duration="4546000" />
+    </task>
+    <task id="LOCAL-00001" summary=".">
+      <created>1568388702696</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1568388702696</updated>
+    </task>
+    <task id="LOCAL-00002" summary=".">
+      <created>1572874628596</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1572874628596</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" suspend="NONE" type="DotNet Exception Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs</url>
+          <line>59</line>
+          <properties documentPath="$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs" initialLine="58">
+            <startOffsets>
+              <option value="3376" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3483" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs</url>
+          <line>64</line>
+          <properties documentPath="$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs" initialLine="63">
+            <startOffsets>
+              <option value="3603" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3708" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs</url>
+          <line>72</line>
+          <properties documentPath="$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs" initialLine="71">
+            <startOffsets>
+              <option value="4138" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4229" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs</url>
+          <line>77</line>
+          <properties documentPath="$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs" initialLine="76">
+            <startOffsets>
+              <option value="4353" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4481" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs</url>
+          <line>88</line>
+          <properties documentPath="$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs" initialLine="87">
+            <startOffsets>
+              <option value="5190" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5199" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs</url>
+          <line>94</line>
+          <properties documentPath="$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs" initialLine="93">
+            <startOffsets>
+              <option value="5368" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5393" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs</url>
+          <line>99</line>
+          <properties documentPath="$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs" initialLine="98">
+            <startOffsets>
+              <option value="5510" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5521" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs</url>
+          <line>105</line>
+          <properties documentPath="$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs" initialLine="104">
+            <startOffsets>
+              <option value="5680" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5705" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs</url>
+          <line>110</line>
+          <properties documentPath="$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs" initialLine="109">
+            <startOffsets>
+              <option value="5829" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5838" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs</url>
+          <line>116</line>
+          <properties documentPath="$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs" initialLine="115">
+            <startOffsets>
+              <option value="6004" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6029" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs</url>
+          <line>121</line>
+          <properties documentPath="$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs" initialLine="120">
+            <startOffsets>
+              <option value="6145" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6156" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs</url>
+          <line>133</line>
+          <properties documentPath="$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Sagas/ApproveOrderSaga.cs" initialLine="132">
+            <startOffsets>
+              <option value="6482" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6491" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Handlers/GenericEventHandler.cs</url>
+          <line>35</line>
+          <properties documentPath="$PROJECT_DIR$/DNC-DShop.Services.Operations/src/DShop.Services.Operations/Handlers/GenericEventHandler.cs" initialLine="35">
+            <startOffsets>
+              <option value="1519" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1581" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DNC-DShop.Services.Notifications/src/DShop.Services.Notifications/Handlers/OrderCreatedHandler.cs</url>
+          <line>29</line>
+          <properties documentPath="$PROJECT_DIR$/DNC-DShop.Services.Notifications/src/DShop.Services.Notifications/Handlers/OrderCreatedHandler.cs" initialLine="29">
+            <startOffsets>
+              <option value="1030" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1068" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

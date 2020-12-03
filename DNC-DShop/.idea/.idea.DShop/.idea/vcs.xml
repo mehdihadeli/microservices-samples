@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DNC-DShop" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DNC-DShop.Api" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DNC-DShop.Api.Next" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DNC-DShop.Common" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DNC-DShop.Services.Customers" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DNC-DShop.Services.Identity" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DNC-DShop.Services.Notifications" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DNC-DShop.Services.Operations" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DNC-DShop.Services.Orders" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DNC-DShop.Services.Products" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DNC-DShop.Services.Signalr" vcs="Git" />
+  </component>
+</project>
