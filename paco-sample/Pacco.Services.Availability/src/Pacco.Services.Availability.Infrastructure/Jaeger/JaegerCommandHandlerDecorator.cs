@@ -1,8 +1,9 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Convey.CQRS.Commands;
-using Convey.Types;
+using MicroBootstrap.Commands;
+using MicroBootstrap.RabbitMq;
+using MicroBootstrap.Types;
 using OpenTracing;
 using OpenTracing.Tag;
 
@@ -20,6 +21,25 @@ namespace Pacco.Services.Availability.Infrastructure.Jaeger
             _handler = handler;
             _tracer = tracer;
         }
+
+
+        private IScope BuildScope(string commandName)
+        {
+            var scope = _tracer
+                .BuildSpan($"handling-{commandName}")
+                .WithTag("message-type", commandName);
+
+            if (_tracer.ActiveSpan is {})
+            {
+                scope.AddReference(References.ChildOf, _tracer.ActiveSpan.Context);
+            }
+
+            return scope.StartActive(true);
+        }
+
+        private static string ToUnderscoreCase(string str)
+            => string.Concat(str.Select((x, i) => i > 0 && char.IsUpper(x) ? "_" + x : x.ToString()))
+                .ToLowerInvariant();
 
         public async Task HandleAsync(TCommand command)
         {
@@ -40,23 +60,5 @@ namespace Pacco.Services.Availability.Infrastructure.Jaeger
                 throw;
             }
         }
-
-        private IScope BuildScope(string commandName)
-        {
-            var scope = _tracer
-                .BuildSpan($"handling-{commandName}")
-                .WithTag("message-type", commandName);
-
-            if (_tracer.ActiveSpan is {})
-            {
-                scope.AddReference(References.ChildOf, _tracer.ActiveSpan.Context);
-            }
-
-            return scope.StartActive(true);
-        }
-
-        private static string ToUnderscoreCase(string str)
-            => string.Concat(str.Select((x, i) => i > 0 && char.IsUpper(x) ? "_" + x : x.ToString()))
-                .ToLowerInvariant();
     }
 }

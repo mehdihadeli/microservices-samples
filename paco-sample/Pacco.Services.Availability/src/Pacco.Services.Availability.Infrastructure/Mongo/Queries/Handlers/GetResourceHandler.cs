@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Convey.CQRS.Queries;
+using MicroBootstrap.Queries;
 using MongoDB.Driver;
 using Pacco.Services.Availability.Application.DTO;
 using Pacco.Services.Availability.Application.Queries;

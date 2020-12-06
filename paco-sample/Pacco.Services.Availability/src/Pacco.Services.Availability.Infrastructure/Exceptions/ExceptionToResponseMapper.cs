@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Concurrent;
 using System.Net;
-using Convey;
-using Convey.WebApi.Exceptions;
+using MicroBootstrap;
+using MicroBootstrap.WebApi.Exceptions;
 using Pacco.Services.Availability.Application.Exceptions;
 using Pacco.Services.Availability.Core.Exceptions;
 
@@ -36,7 +36,7 @@ namespace Pacco.Services.Availability.Infrastructure.Exceptions
                 DomainException domainException when !string.IsNullOrWhiteSpace(domainException.Code) => domainException
                     .Code,
                 AppException appException when !string.IsNullOrWhiteSpace(appException.Code) => appException.Code,
-                _ => exception.GetType().Name.Underscore().Replace("_exception", string.Empty)
+                _ => exception.GetType().Name.ToSnakeCase().Replace("_exception", string.Empty)
             };
 
             Codes.TryAdd(type, exceptionCode);

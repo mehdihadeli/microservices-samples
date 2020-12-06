@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Convey.Logging.CQRS;
+using MicroBootstrap.Logging.CQRS;
 using Pacco.Services.Availability.Application.Commands;
 using Pacco.Services.Availability.Application.Events.External;
 using Pacco.Services.Availability.Application.Exceptions;

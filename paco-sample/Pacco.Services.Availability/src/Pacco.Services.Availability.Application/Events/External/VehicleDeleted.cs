@@ -1,6 +1,6 @@
 using System;
-using Convey.CQRS.Events;
-using Convey.MessageBrokers;
+using MicroBootstrap.Events;
+using MicroBootstrap.Messages;
 
 namespace Pacco.Services.Availability.Application.Events.External
 {

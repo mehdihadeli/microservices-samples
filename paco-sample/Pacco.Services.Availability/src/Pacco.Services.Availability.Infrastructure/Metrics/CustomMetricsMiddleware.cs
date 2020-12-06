@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Pacco.Services.Availability.Application.Commands;
 using Pacco.Services.Availability.Application.Queries;
-using MetricsOptions = Convey.Metrics.AppMetrics.MetricsOptions;
 
 namespace Pacco.Services.Availability.Infrastructure.Metrics
 {

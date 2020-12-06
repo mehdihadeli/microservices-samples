@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
-using Convey.CQRS.Events;
+using MicroBootstrap.Events;
+using MicroBootstrap.RabbitMq;
 
 namespace Pacco.Services.Availability.Application.Events.External.Handlers
 {
@@ -8,6 +9,8 @@ namespace Pacco.Services.Availability.Application.Events.External.Handlers
         // Customer data could be saved into custom DB depending on the business requirements.
         // Given the asynchronous nature of events, this would result in eventual consistency.
         public Task HandleAsync(CustomerCreated @event)
-            => Task.CompletedTask;
+        {
+           return Task.CompletedTask;
+        }
     }
 }

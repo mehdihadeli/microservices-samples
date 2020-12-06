@@ -1,5 +1,5 @@
 using System;
-using Convey.CQRS.Commands;
+using MicroBootstrap.Commands;
 
 namespace Pacco.Services.Availability.Application.Commands
 {

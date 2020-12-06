@@ -6,7 +6,6 @@ using App.Metrics.Gauge;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using MetricsOptions = Convey.Metrics.AppMetrics.MetricsOptions;
 
 namespace Pacco.Services.Availability.Infrastructure.Metrics
 {

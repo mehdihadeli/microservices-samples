@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Convey.Persistence.MongoDB;
+using MicroBootstrap.Mongo;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Conventions;
@@ -35,7 +35,7 @@ namespace Pacco.Services.Availability.Tests.Shared.Fixtures
 
             RegisterConventions();
 
-            return _seed ? _seeder.SeedAsync(_database) : Task.CompletedTask;
+            return _seed ? _seeder.SeedAsync() : Task.CompletedTask;
         }
 
         private void RegisterConventions()

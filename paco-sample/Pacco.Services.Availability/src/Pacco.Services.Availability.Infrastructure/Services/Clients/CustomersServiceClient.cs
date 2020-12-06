@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
-using Convey.HTTP;
-using Convey.Secrets.Vault;
-using Convey.WebApi.Security;
+using MicroBootstrap.HTTP;
+using MicroBootstrap.Vault;
+using MicroBootstrap.WebApi.Security;
 using Pacco.Services.Availability.Application.DTO;
 using Pacco.Services.Availability.Application.Services.Clients;
 

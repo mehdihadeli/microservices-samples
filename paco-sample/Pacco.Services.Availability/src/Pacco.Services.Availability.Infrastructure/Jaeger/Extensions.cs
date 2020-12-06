@@ -1,16 +1,15 @@
-using Convey;
-using Convey.CQRS.Commands;
+using MicroBootstrap.Commands;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Pacco.Services.Availability.Infrastructure.Jaeger
 {
     internal static class Extensions
     {
-        public static IConveyBuilder AddJaegerDecorators(this IConveyBuilder builder)
+        public static IServiceCollection AddJaegerDecorators(this IServiceCollection services)
         {
-            builder.Services.TryDecorate(typeof(ICommandHandler<>), typeof(JaegerCommandHandlerDecorator<>));
+            services.TryDecorate(typeof(ICommandHandler<>), typeof(JaegerCommandHandlerDecorator<>));
 
-            return builder;
+            return services;
         }
     }
 }

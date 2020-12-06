@@ -1,5 +1,5 @@
 using System;
-using Convey.MessageBrokers.RabbitMQ;
+using MicroBootstrap.MessageBrokers.RabbitMQ;
 using Pacco.Services.Availability.Application.Commands;
 using Pacco.Services.Availability.Application.Events.Rejected;
 using Pacco.Services.Availability.Application.Exceptions;

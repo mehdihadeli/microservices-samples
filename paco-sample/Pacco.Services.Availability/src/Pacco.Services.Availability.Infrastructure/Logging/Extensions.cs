@@ -1,5 +1,4 @@
-using Convey;
-using Convey.Logging.CQRS;
+using MicroBootstrap.Logging.CQRS;
 using Microsoft.Extensions.DependencyInjection;
 using Pacco.Services.Availability.Application.Commands;
 
@@ -7,13 +6,13 @@ namespace Pacco.Services.Availability.Infrastructure.Logging
 {
     internal static class Extensions
     {
-        public static IConveyBuilder AddHandlersLogging(this IConveyBuilder builder)
+        public static IServiceCollection AddHandlersLogging(this IServiceCollection services)
         {
             var assembly = typeof(AddResource).Assembly;
             
-            builder.Services.AddSingleton<IMessageToLogTemplateMapper>(new MessageToLogTemplateMapper());
+            services.AddSingleton<IMessageToLogTemplateMapper>(new MessageToLogTemplateMapper());
             
-            return builder
+            return services
                 .AddCommandHandlersLogging(assembly)
                 .AddEventHandlersLogging(assembly);
         }

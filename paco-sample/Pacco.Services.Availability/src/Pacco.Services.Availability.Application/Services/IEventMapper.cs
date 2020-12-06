@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Convey.CQRS.Events;
+using MicroBootstrap.Events;
 using Pacco.Services.Availability.Core.Events;
 
 namespace Pacco.Services.Availability.Application.Services

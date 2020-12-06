@@ -1,5 +1,5 @@
 using System;
-using Convey.CQRS.Events;
+using MicroBootstrap.Events;
 
 namespace Pacco.Services.Availability.Application.Events
 {

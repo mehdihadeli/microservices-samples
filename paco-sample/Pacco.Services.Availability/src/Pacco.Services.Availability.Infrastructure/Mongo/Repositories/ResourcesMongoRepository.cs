@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Convey.Persistence.MongoDB;
+using MicroBootstrap.Mongo;
 using MongoDB.Driver;
 using Pacco.Services.Availability.Core.Entities;
 using Pacco.Services.Availability.Core.Repositories;

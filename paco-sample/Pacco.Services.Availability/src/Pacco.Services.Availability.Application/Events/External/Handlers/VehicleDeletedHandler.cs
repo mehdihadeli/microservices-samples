@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
-using Convey.CQRS.Commands;
-using Convey.CQRS.Events;
+using MicroBootstrap.Commands.Dispatchers;
+using MicroBootstrap.Events;
+using MicroBootstrap.RabbitMq;
 using Pacco.Services.Availability.Application.Commands;
 
 namespace Pacco.Services.Availability.Application.Events.External.Handlers
@@ -14,6 +15,9 @@ namespace Pacco.Services.Availability.Application.Events.External.Handlers
             _dispatcher = dispatcher;
         }
 
-        public Task HandleAsync(VehicleDeleted @event) => _dispatcher.SendAsync(new DeleteResource(@event.VehicleId));
+        public Task HandleAsync(VehicleDeleted @event)
+        {
+           return _dispatcher.SendAsync(new DeleteResource(@event.VehicleId));
+        }
     }
 }

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Convey.CQRS.Events;
+using MicroBootstrap.Events;
 
 namespace Pacco.Services.Availability.Application.Services
 {

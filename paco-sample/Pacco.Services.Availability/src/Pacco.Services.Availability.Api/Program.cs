@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Convey;
-using Convey.Secrets.Vault;
-using Convey.Logging;
-using Convey.Types;
-using Convey.WebApi;
-using Convey.WebApi.CQRS;
+using MicroBootstrap;
+using MicroBootstrap.Logging;
+using MicroBootstrap.Vault;
+using MicroBootstrap.WebApi;
+using MicroBootstrap.WebApi.CQRS;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -28,11 +27,9 @@ namespace Pacco.Services.Availability.Api
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
             => WebHost.CreateDefaultBuilder(args)
                 .ConfigureServices(services => services
-                    .AddConvey()
                     .AddWebApi()
                     .AddApplication()
-                    .AddInfrastructure()
-                    .Build())
+                    .AddInfrastructure())
                 .Configure(app => app
                     .UseInfrastructure()
                     .UseDispatcherEndpoints(endpoints => endpoints

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Convey.Types;
+using MicroBootstrap.Types;
 
 namespace Pacco.Services.Availability.Infrastructure.Mongo.Documents
 {

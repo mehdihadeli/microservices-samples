@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using Convey.CQRS.Events;
+using MicroBootstrap.Events;
 using Pacco.Services.Availability.Application.Events;
 using Pacco.Services.Availability.Application.Services;
 using Pacco.Services.Availability.Core.Events;

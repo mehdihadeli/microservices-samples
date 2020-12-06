@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Convey.CQRS.Commands;
+using MicroBootstrap.Commands;
 
 namespace Pacco.Services.Availability.Application.Commands
 {

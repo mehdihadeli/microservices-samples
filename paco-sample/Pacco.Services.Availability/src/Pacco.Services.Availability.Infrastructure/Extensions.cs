@@ -2,32 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Convey;
-using Convey.CQRS.Commands;
-using Convey.CQRS.Events;
-using Convey.CQRS.Queries;
-using Convey.Discovery.Consul;
-using Convey.Docs.Swagger;
-using Convey.HTTP;
-using Convey.LoadBalancing.Fabio;
-using Convey.MessageBrokers;
-using Convey.MessageBrokers.CQRS;
-using Convey.MessageBrokers.Outbox;
-using Convey.MessageBrokers.Outbox.Mongo;
-using Convey.MessageBrokers.RabbitMQ;
-using Convey.Metrics.AppMetrics;
-using Convey.Persistence.MongoDB;
-using Convey.Persistence.Redis;
-using Convey.Security;
-using Convey.Tracing.Jaeger;
-using Convey.Tracing.Jaeger.RabbitMQ;
-using Convey.WebApi;
-using Convey.WebApi.CQRS;
-using Convey.WebApi.Security;
-using Convey.WebApi.Swagger;
-using Elasticsearch.Net;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Pacco.Services.Availability.Application;
@@ -38,57 +12,71 @@ using Pacco.Services.Availability.Application.Services;
 using Pacco.Services.Availability.Application.Services.Clients;
 using Pacco.Services.Availability.Core.Repositories;
 using Pacco.Services.Availability.Infrastructure.Contexts;
-using Pacco.Services.Availability.Infrastructure.Decorators;
 using Pacco.Services.Availability.Infrastructure.Exceptions;
-using Pacco.Services.Availability.Infrastructure.Jaeger;
-using Pacco.Services.Availability.Infrastructure.Logging;
 using Pacco.Services.Availability.Infrastructure.Metrics;
 using Pacco.Services.Availability.Infrastructure.Mongo.Documents;
 using Pacco.Services.Availability.Infrastructure.Mongo.Repositories;
 using Pacco.Services.Availability.Infrastructure.Services;
 using Pacco.Services.Availability.Infrastructure.Services.Clients;
+using MicroBootstrap.WebApi;
+using MicroBootstrap.Consul;
+using MicroBootstrap.Fabio;
+using MicroBootstrap.Jaeger;
+using MicroBootstrap.Mongo;
+using MicroBootstrap.Queries;
+using MicroBootstrap.RabbitMq;
+using MicroBootstrap.Redis;
+using MicroBootstrap.Security;
+using MicroBootstrap.Swagger;
+using MicroBootstrap.WebApi.CQRS;
+using MicroBootstrap.WebApi.Security;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Pacco.Services.Availability.Infrastructure.Jaeger;
+using Pacco.Services.Availability.Infrastructure.Logging;
+using CorrelationContext = Pacco.Services.Availability.Infrastructure.Contexts.CorrelationContext;
 
 namespace Pacco.Services.Availability.Infrastructure
 {
     public static class Extensions
     {
-        public static IConveyBuilder AddInfrastructure(this IConveyBuilder builder)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-            builder.Services.AddSingleton<IEventMapper, EventMapper>();
-            builder.Services.AddTransient<IMessageBroker, MessageBroker>();
-            builder.Services.AddTransient<IResourcesRepository, ResourcesMongoRepository>();
-            builder.Services.AddTransient<ICustomersServiceClient, CustomersServiceClient>();
-            builder.Services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
-            builder.Services.AddTransient<IAppContextFactory, AppContextFactory>();
-            builder.Services.AddTransient<IEventProcessor, EventProcessor>();
-            builder.Services.AddTransient(ctx => ctx.GetRequiredService<IAppContextFactory>().Create());
-            builder.Services.AddHostedService<MetricsJob>();
-            builder.Services.AddSingleton<CustomMetricsMiddleware>();
-            builder.Services.TryDecorate(typeof(ICommandHandler<>), typeof(OutboxCommandHandlerDecorator<>));
-            builder.Services.TryDecorate(typeof(IEventHandler<>), typeof(OutboxEventHandlerDecorator<>));
-            builder.Services.Scan(s => s.FromAssemblies(AppDomain.CurrentDomain.GetAssemblies())
+           services.AddSingleton<IEventMapper, EventMapper>();
+           services.AddTransient<IMessageBroker, MessageBroker>();
+           services.AddTransient<IResourcesRepository, ResourcesMongoRepository>();
+           services.AddTransient<ICustomersServiceClient, CustomersServiceClient>();
+           // services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+           services.AddTransient<IAppContextFactory, AppContextFactory>();
+           services.AddTransient<IEventProcessor, EventProcessor>();
+           services.AddTransient(ctx => ctx.GetRequiredService<IAppContextFactory>().Create());
+           // services.AddHostedService<MetricsJob>();
+           services.AddSingleton<CustomMetricsMiddleware>();
+           // services.TryDecorate(typeof(ICommandHandler<>), typeof(OutboxCommandHandlerDecorator<>));
+           // services.TryDecorate(typeof(IEventHandler<>), typeof(OutboxEventHandlerDecorator<>));
+           services.Scan(s => s.FromAssemblies(AppDomain.CurrentDomain.GetAssemblies())
                 .AddClasses(c => c.AssignableTo(typeof(IDomainEventHandler<>)))
                 .AsImplementedInterfaces()
                 .WithTransientLifetime());
 
-            return builder
+            return services
                 .AddErrorHandler<ExceptionToResponseMapper>()
                 .AddQueryHandlers()
                 .AddInMemoryQueryDispatcher()
                 .AddHttpClient()
                 .AddConsul()
                 .AddFabio()
-                .AddRabbitMq(plugins: p => p.AddJaegerRabbitMqPlugin())
-                .AddMessageOutbox(o => o.AddMongo())
+                .AddRabbitMq()
+                // .AddMessageOutbox(o => o.AddMongo())
                 .AddExceptionToMessageMapper<ExceptionToMessageMapper>()
                 .AddMongo()
                 .AddRedis()
-                .AddMetrics()
+                // .AddMetrics()
                 .AddJaeger()
                 .AddJaegerDecorators()
                 .AddHandlersLogging()
                 .AddMongoRepository<ResourceDocument, Guid>("resources")
-                .AddWebApiSwaggerDocs()
+                //.AddWebApiSwaggerDocs()
                 .AddCertificateAuthentication()
                 .AddSecurity();
         }
@@ -96,12 +84,11 @@ namespace Pacco.Services.Availability.Infrastructure
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
         {
             app.UseErrorHandler()
-                .UseSwaggerDocs()
+                //.UseSwaggerDocs()
                 .UseJaeger()
-                .UseConvey()
-                .UsePublicContracts<ContractAttribute>()
-                .UseMetrics()
-                .UseMiddleware<CustomMetricsMiddleware>()
+                // .UsePublicContracts<ContractAttribute>()
+                // .UseMetrics()
+                // .UseMiddleware<CustomMetricsMiddleware>()
                 .UseCertificateAuthentication()
                 .UseRabbitMq()
                 .SubscribeCommand<AddResource>()

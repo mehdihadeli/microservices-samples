@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Convey.MessageBrokers.RabbitMQ;
+using MicroBootstrap.RabbitMq;
 using Newtonsoft.Json;
 using Pacco.Services.Availability.Tests.Shared.Helpers;
 using RabbitMQ.Client;
@@ -75,7 +75,7 @@ namespace Pacco.Services.Availability.Tests.Shared.Fixtures
             consumer.Received += async (model, ea) =>
             {
                 var body = ea.Body;
-                var json = Encoding.UTF8.GetString(body.Span);
+                var json = Encoding.UTF8.GetString(body);
                 var message = JsonConvert.DeserializeObject<TMessage>(json);
 
                 await onMessageReceived(id, taskCompletionSource);
