@@ -7,26 +7,30 @@ using Pacco.Services.Availability.Core.ValueObjects;
 
 namespace Pacco.Services.Availability.Core.Entities
 {
-    public class Resource : AggregateRoot
+    public class Resource : AggregateRoot  // resource is like a diver
     {
-        private ISet<string> _tags = new HashSet<string>();
-        private ISet<Reservation> _reservations = new HashSet<Reservation>();
-        
+        // we use set because ordering is not important
+        private ISet<string> _tags = new HashSet<string>(); // resource can be different here we tag it to vehicle
+        private ISet<Reservation> _reservations = new HashSet<Reservation>(); // list of reservation that we made for this resource
+
         public IEnumerable<string> Tags
         {
             get => _tags;
             private set => _tags = new HashSet<string>(value);
         }
-        
+
+        // reservation can be a value object or entity in our perspective it is value object and we don't care about its identity
         public IEnumerable<Reservation> Reservations
         {
             get => _reservations;
             private set => _reservations = new HashSet<Reservation>(value);
         }
 
+        // when we create resource it can have no reservation, we can add it later
         public Resource(Guid id, IEnumerable<string> tags, IEnumerable<Reservation> reservations = null,
             int version = 0)
         {
+            //here we need to sure we never violate our invariant
             ValidateTags(tags);
             Id = id;
             Tags = tags;
@@ -85,7 +89,7 @@ namespace Pacco.Services.Availability.Core.Entities
             {
                 return;
             }
-            
+
             AddEvent(new ReservationReleased(this, reservation));
         }
 
@@ -95,7 +99,7 @@ namespace Pacco.Services.Availability.Core.Entities
             {
                 AddEvent(new ReservationCanceled(this, reservation));
             }
-            
+
             AddEvent(new ResourceDeleted(this));
         }
     }
