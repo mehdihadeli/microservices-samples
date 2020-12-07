@@ -19,6 +19,7 @@
             "program": "${workspaceFolder}/Pacco.APIGateway/src/Pacco.APIGateway/bin/Debug/netcoreapp3.1/Pacco.APIGateway.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Pacco.APIGateway/src/Pacco.APIGateway",
+            "console": "externalTerminal",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             // "serverReadyAction": {
@@ -38,6 +39,7 @@
             "program": "${workspaceFolder}/Pacco.APIGateway.Ocelot/src/Pacco.APIGateway.Ocelots/bin/Debug/netcoreapp3.1/Pacco.APIGateway.Ocelot.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Pacco.APIGateway.Ocelot/src/Pacco.APIGateway.Ocelots",
+            "console": "externalTerminal",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             // "serverReadyAction": {
@@ -57,6 +59,7 @@
             "program": "${workspaceFolder}/Pacco.Services.Availability/src/Pacco.Services.Availability.Api/bin/Debug/netcoreapp3.1/Pacco.Services.Availability.Api.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Pacco.Services.Availability/src/Pacco.Services.Availability.Api",
+            "console": "externalTerminal",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             // "serverReadyAction": {
