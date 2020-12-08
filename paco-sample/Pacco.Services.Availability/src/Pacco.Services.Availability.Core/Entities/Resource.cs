@@ -27,6 +27,7 @@ namespace Pacco.Services.Availability.Core.Entities
         }
 
         // when we create resource it can have no reservation, we can add it later
+        // if creation of object is complex we can extract it in a factory.
         public Resource(Guid id, IEnumerable<string> tags, IEnumerable<Reservation> reservations = null,
             int version = 0)
         {
@@ -51,9 +52,15 @@ namespace Pacco.Services.Availability.Core.Entities
             }
         }
 
+        // we create our factory method here because we want to accese add event method an it is protected and only accessible here
+
+        // we create a method for creating resource we can use constructor also, for new resource we use factory method and one we will
+        // let say fetch database and we want to resore this as an aggregate and we will use constructore and because the constructor itself
+        // don't have a event and we don't need it for creating resource here
         public static Resource Create(Guid id, IEnumerable<string> tags, IEnumerable<Reservation> reservations = null)
         {
             var resource = new Resource(id, tags, reservations);
+            // we want to publish this domain event internally
             resource.AddEvent(new ResourceCreated(resource));
             return resource;
         }
