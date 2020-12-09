@@ -6,6 +6,7 @@ using MicroBootstrap.Vault;
 using MicroBootstrap.WebApi;
 using MicroBootstrap.WebApi.CQRS;
 using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,13 +25,21 @@ namespace Pacco.Services.Availability.Api
                 .Build()
                 .RunAsync();
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+            //https://www.strathweb.com/2020/10/beautiful-and-compact-web-apis-with-c-9-net-5-0-and-asp-net-core/
+            //https://www.strathweb.com/2017/01/building-microservices-with-asp-net-core-without-mvc/
+            //https://andrewlock.net/converting-a-terminal-middleware-to-endpoint-routing-in-aspnetcore-3/
+            //https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-5.0#tm
+            //https://www.youtube.com/watch?v=pGCHAJnJ1CA
+        
+
+            // we get ride of controllers and here startup.cs is not required and we get ride of startup.cs
+            public static IWebHostBuilder CreateWebHostBuilder(string[] args)
             => WebHost.CreateDefaultBuilder(args)
                 .ConfigureServices(services => services
                     .AddWebApi()
                     .AddApplication()
                     .AddInfrastructure())
-                .Configure(app => app
+                .Configure((IApplicationBuilder app) => app
                     .UseInfrastructure()
                     .UseDispatcherEndpoints(endpoints => endpoints
                         .Get("", ctx => ctx.Response.WriteAsync(ctx.RequestServices.GetService<AppOptions>().Name))

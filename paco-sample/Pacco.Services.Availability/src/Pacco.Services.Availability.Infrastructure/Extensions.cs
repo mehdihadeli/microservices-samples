@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using Pacco.Services.Availability.Application;
+using MicroBootstrap;
 using Pacco.Services.Availability.Application.Commands;
 using Pacco.Services.Availability.Application.Events;
 using Pacco.Services.Availability.Application.Events.External;
@@ -27,8 +27,6 @@ using MicroBootstrap.Queries;
 using MicroBootstrap.RabbitMq;
 using MicroBootstrap.Redis;
 using MicroBootstrap.Security;
-using MicroBootstrap.Swagger;
-using MicroBootstrap.WebApi.CQRS;
 using MicroBootstrap.WebApi.Security;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -70,12 +68,12 @@ namespace Pacco.Services.Availability.Infrastructure
                 // .AddMessageOutbox(o => o.AddMongo())
                 .AddExceptionToMessageMapper<ExceptionToMessageMapper>()
                 .AddMongo()
+                .AddMongoRepository<ResourceDocument, Guid>("resources")
                 .AddRedis()
                 // .AddMetrics()
                 .AddJaeger()
                 .AddJaegerDecorators()
                 .AddHandlersLogging()
-                .AddMongoRepository<ResourceDocument, Guid>("resources")
                 //.AddWebApiSwaggerDocs()
                 .AddCertificateAuthentication()
                 .AddSecurity();
@@ -83,7 +81,9 @@ namespace Pacco.Services.Availability.Infrastructure
 
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
         {
-            app.UseErrorHandler()
+            
+            app.UseInitializers()
+                .UseErrorHandler()
                 //.UseSwaggerDocs()
                 .UseJaeger()
                 // .UsePublicContracts<ContractAttribute>()

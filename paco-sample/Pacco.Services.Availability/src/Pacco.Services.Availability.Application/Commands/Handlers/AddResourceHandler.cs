@@ -24,12 +24,15 @@ namespace Pacco.Services.Availability.Application.Commands.Handlers
         {
             if (await _repository.ExistsAsync(command.ResourceId))
             {
+                // this is not a domain exception because doesn't exist resource is not domain concern, from domain perspective resource is always there
+
                 throw new ResourceAlreadyExistsException(command.ResourceId);
             }
-
+            // use static factory class for create resource
+            // here we use guid for our id but we can use snow-flake approach  
             var resource = Resource.Create(command.ResourceId, command.Tags);
             await _repository.AddAsync(resource);
             await _eventProcessor.ProcessAsync(resource.Events);
-        }
+         }
     }
 }

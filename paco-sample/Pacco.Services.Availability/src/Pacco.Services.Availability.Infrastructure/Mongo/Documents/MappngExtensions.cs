@@ -6,8 +6,10 @@ using Pacco.Services.Availability.Core.ValueObjects;
 
 namespace Pacco.Services.Availability.Infrastructure.Mongo.Documents
 {
-    internal static class Extensions
+    //Mapping between document and entity. we could use also automapper
+    internal static class MappngExtensions
     {
+        // we use constructor rather than factory for resource because we don't want the events
         public static Resource AsEntity(this ResourceDocument document)
             => new Resource(document.Id, document.Tags, document.Reservations
                 .Select(r => new Reservation(r.TimeStamp.AsDateTime(), r.Priority)), document.Version);
