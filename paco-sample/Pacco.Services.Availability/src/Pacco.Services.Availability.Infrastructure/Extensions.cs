@@ -59,7 +59,7 @@ namespace Pacco.Services.Availability.Infrastructure
 
             return services
                 .AddErrorHandler<ExceptionToResponseMapper>()
-                .AddQueryHandlers()
+                .AddQueryHandlers()          //we put query part in infrastructure layer instead of application layer
                 .AddInMemoryQueryDispatcher()
                 .AddHttpClient()
                 .AddConsul()

@@ -30,7 +30,7 @@ namespace Pacco.Services.Availability.Infrastructure.Mongo.Queries.Handlers
                 return allDocuments.Select(d => d.AsDto());
             }
 
-            var documents = collection.AsQueryable();
+            var documents = collection.AsQueryable(); // use MongoDB.Driver.Linq and some its Linq like feature for mongo with AsQueryable
             documents = query.MatchAllTags
                 ? documents.Where(d => query.Tags.All(t => d.Tags.Contains(t)))
                 : documents.Where(d => query.Tags.Any(t => d.Tags.Contains(t)));

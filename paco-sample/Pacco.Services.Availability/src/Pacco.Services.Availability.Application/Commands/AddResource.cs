@@ -5,7 +5,7 @@ using MicroBootstrap.Commands;
 
 namespace Pacco.Services.Availability.Application.Commands
 {
-    // command name should be imperatice. and we don't have suffix for our command and query 
+    // command name should be imperatice and what we want to do. and we don't have suffix for our command and query 
     // we need our command to be immutable, we don't want change them.
     // command use for user intention. user want to intract with system and here create this input as a command and we don't want change user intention
     
