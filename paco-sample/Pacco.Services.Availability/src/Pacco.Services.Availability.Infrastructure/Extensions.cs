@@ -33,6 +33,7 @@ using Microsoft.AspNetCore.Http;
 using Pacco.Services.Availability.Infrastructure.Jaeger;
 using Pacco.Services.Availability.Infrastructure.Logging;
 using CorrelationContext = Pacco.Services.Availability.Infrastructure.Contexts.CorrelationContext;
+using MicroBootstrap.Events;
 
 namespace Pacco.Services.Availability.Infrastructure
 {
@@ -40,63 +41,68 @@ namespace Pacco.Services.Availability.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-           services.AddSingleton<IEventMapper, EventMapper>();
-           services.AddTransient<IMessageBroker, MessageBroker>();
-           services.AddTransient<IResourcesRepository, ResourcesMongoRepository>();
-           services.AddTransient<ICustomersServiceClient, CustomersServiceClient>();
-           // services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
-           services.AddTransient<IAppContextFactory, AppContextFactory>();
-           services.AddTransient<IEventProcessor, EventProcessor>();
-           services.AddTransient(ctx => ctx.GetRequiredService<IAppContextFactory>().Create());
-           // services.AddHostedService<MetricsJob>();
-           services.AddSingleton<CustomMetricsMiddleware>();
-           // services.TryDecorate(typeof(ICommandHandler<>), typeof(OutboxCommandHandlerDecorator<>));
-           // services.TryDecorate(typeof(IEventHandler<>), typeof(OutboxEventHandlerDecorator<>));
-           services.Scan(s => s.FromAssemblies(AppDomain.CurrentDomain.GetAssemblies())
-                .AddClasses(c => c.AssignableTo(typeof(IDomainEventHandler<>)))
-                .AsImplementedInterfaces()
-                .WithTransientLifetime());
+            //    services.AddSingleton<IEventMapper, EventMapper>();
+            //    services.AddTransient<IMessageBroker, MessageBroker>();
+            services.AddTransient<IResourcesRepository, ResourcesMongoRepository>();
+            //    services.AddTransient<ICustomersServiceClient, CustomersServiceClient>();
+            //    // services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+            //    services.AddTransient<IAppContextFactory, AppContextFactory>();
+            //    services.AddTransient<IEventProcessor, EventProcessor>();
+            //    services.AddTransient(ctx => ctx.GetRequiredService<IAppContextFactory>().Create());
+            //    // services.AddHostedService<MetricsJob>();
+            //    services.AddSingleton<CustomMetricsMiddleware>();
+            //    // services.TryDecorate(typeof(ICommandHandler<>), typeof(OutboxCommandHandlerDecorator<>));
+            //    // services.TryDecorate(typeof(IEventHandler<>), typeof(OutboxEventHandlerDecorator<>));
+            // //    services.Scan(s => s.FromAssemblies(AppDomain.CurrentDomain.GetAssemblies())
+            // //         .AddClasses(c => c.AssignableTo(typeof(IDomainEventHandler<>)))
+            // //         .AsImplementedInterfaces()
+            // //         .WithTransientLifetime());
 
             return services
-                .AddErrorHandler<ExceptionToResponseMapper>()
-                .AddQueryHandlers()          //we put query part in infrastructure layer instead of application layer
-                .AddInMemoryQueryDispatcher()
-                .AddHttpClient()
-                .AddConsul()
-                .AddFabio()
-                .AddRabbitMq()
-                // .AddMessageOutbox(o => o.AddMongo())
-                .AddExceptionToMessageMapper<ExceptionToMessageMapper>()
-                .AddMongo()
-                .AddMongoRepository<ResourceDocument, Guid>("resources")
-                .AddRedis()
-                // .AddMetrics()
-                .AddJaeger()
-                .AddJaegerDecorators()
-                .AddHandlersLogging()
-                //.AddWebApiSwaggerDocs()
-                .AddCertificateAuthentication()
-                .AddSecurity();
+                    .AddInitializers()
+                    .AddErrorHandler<ExceptionToResponseMapper>()
+                    .AddQueryHandlers() //we put query part in infrastructure layer instead of application layer
+                    .AddInMemoryQueryDispatcher()
+                    // .AddEventHandlers()
+                    // .AddInMemoryEventDispatcher()
+                    // .AddHttpClient()
+                    // .AddConsul()
+                    // .AddFabio()
+                    // .AddRabbitMq()
+                    // // .AddMessageOutbox(o => o.AddMongo())
+                    // .AddExceptionToMessageMapper<ExceptionToMessageMapper>()
+                    .AddMongo()
+                    .AddMongoRepository<ResourceDocument, Guid>("resources")
+                // .AddRedis()
+                // // .AddMetrics()
+                // .AddJaeger()
+                // .AddJaegerDecorators()
+                // .AddHandlersLogging()
+                // //.AddWebApiSwaggerDocs()
+                // .AddCertificateAuthentication()
+                // .AddSecurity()
+                ;
         }
 
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
         {
-            
-            app.UseInitializers()
-                .UseErrorHandler()
-                //.UseSwaggerDocs()
-                .UseJaeger()
-                // .UsePublicContracts<ContractAttribute>()
-                // .UseMetrics()
-                // .UseMiddleware<CustomMetricsMiddleware>()
-                .UseCertificateAuthentication()
-                .UseRabbitMq()
-                .SubscribeCommand<AddResource>()
-                .SubscribeCommand<DeleteResource>()
-                .SubscribeCommand<ReleaseResourceReservation>()
-                .SubscribeCommand<ReserveResource>()
-                .SubscribeEvent<CustomerCreated>()
-                .SubscribeEvent<VehicleDeleted>();
+            app.UseErrorHandler() // it is a middleware for handling error and use ExceptionToResponseMapper
+                .UseInitializers()
+                
+                // //.UseSwaggerDocs()
+                // .UseJaeger()
+                // // .UsePublicContracts<ContractAttribute>()
+                // // .UseMetrics()
+                // // .UseMiddleware<CustomMetricsMiddleware>()
+                // .UseCertificateAuthentication()
+                // .UseRabbitMq()
+                // .SubscribeCommand<AddResource>()
+                // .SubscribeCommand<DeleteResource>()
+                // .SubscribeCommand<ReleaseResourceReservation>()
+                // .SubscribeCommand<ReserveResource>()
+                // .SubscribeEvent<CustomerCreated>()
+                // .SubscribeEvent<VehicleDeleted>()
+                ;
 
             return app;
         }

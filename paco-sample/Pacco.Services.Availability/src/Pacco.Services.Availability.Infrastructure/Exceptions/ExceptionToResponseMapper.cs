@@ -13,14 +13,14 @@ namespace Pacco.Services.Availability.Infrastructure.Exceptions
         private static readonly ConcurrentDictionary<Type, string> Codes = new ConcurrentDictionary<Type, string>();
 
         public ExceptionResponse Map(Exception exception)
-            => exception switch
+            => exception switch //fancy switch c# 8
             {
                 DomainException ex => new ExceptionResponse(new {code = GetCode(ex), reason = ex.Message},
-                    HttpStatusCode.BadRequest),
+                    HttpStatusCode.BadRequest), // evaluation of domain invariant we want return BadRequest
                 AppException ex => new ExceptionResponse(new {code = GetCode(ex), reason = ex.Message},
                     HttpStatusCode.BadRequest),
                 _ => new ExceptionResponse(new {code = "error", reason = "There was an error."},
-                    HttpStatusCode.BadRequest)
+                    HttpStatusCode.InternalServerError)
             };
 
         private static string GetCode(Exception exception)

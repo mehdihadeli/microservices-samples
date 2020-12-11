@@ -13,15 +13,20 @@ namespace Pacco.Services.Availability.Application.Commands.Handlers
         private readonly IResourcesRepository _repository;
         private readonly IEventProcessor _eventProcessor;
 
-        public AddResourceHandler(IResourcesRepository repository, IEventProcessor eventProcessor)
+        public AddResourceHandler(IResourcesRepository repository
+            //, IEventProcessor eventProcessor
+            )
         {
             _repository = repository;
-            _eventProcessor = eventProcessor;
+            //_eventProcessor = eventProcessor;
         }
 
 
         public async Task HandleAsync(AddResource command)
         {
+            //in our handler we dont catch our exception because of duplication of code everywhere and in our handler we focus on happy path we dont handle error handling and logging in application layer
+            //we handle this responsibility in infrastructure layer
+            
             if (await _repository.ExistsAsync(command.ResourceId))
             {
                 // this is not a domain exception because doesn't exist resource is not domain concern, from domain perspective resource is always there
@@ -32,7 +37,7 @@ namespace Pacco.Services.Availability.Application.Commands.Handlers
             // here we use guid for our id but we can use snow-flake approach  
             var resource = Resource.Create(command.ResourceId, command.Tags);
             await _repository.AddAsync(resource);
-            await _eventProcessor.ProcessAsync(resource.Events);
+            // await _eventProcessor.ProcessAsync(resource.Events);
          }
     }
 }

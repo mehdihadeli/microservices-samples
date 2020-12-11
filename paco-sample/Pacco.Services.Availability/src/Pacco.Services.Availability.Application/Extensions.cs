@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using MicroBootstrap.Commands;
 using MicroBootstrap.Events;
+using MicroBootstrap.Queries;
 using Microsoft.Extensions.DependencyInjection;
 
 [assembly: InternalsVisibleTo("Pacco.Services.Availability.Tests.Unit")]

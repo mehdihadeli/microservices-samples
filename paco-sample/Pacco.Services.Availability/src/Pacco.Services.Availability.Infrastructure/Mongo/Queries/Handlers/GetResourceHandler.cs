@@ -7,6 +7,7 @@ using Pacco.Services.Availability.Infrastructure.Mongo.Documents;
 
 namespace Pacco.Services.Availability.Infrastructure.Mongo.Queries.Handlers
 {
+    // handler not resolve when make it internal
     internal sealed class GetResourceHandler : IQueryHandler<GetResource, ResourceDto>
     {
         // because repository doesn't have searching method we should use other datasource, we can inject mongo connection directly in handler in application layer but it os a abstraction leak

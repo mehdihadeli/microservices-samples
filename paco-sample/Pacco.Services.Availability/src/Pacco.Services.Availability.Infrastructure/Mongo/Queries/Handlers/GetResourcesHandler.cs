@@ -10,6 +10,7 @@ using Pacco.Services.Availability.Infrastructure.Mongo.Documents;
 
 namespace Pacco.Services.Availability.Infrastructure.Mongo.Queries.Handlers
 {
+    // handler not resolve when make it internal
     internal sealed class GetResourcesHandler : IQueryHandler<GetResources, IEnumerable<ResourceDto>>
     {
         private readonly IMongoDatabase _database;

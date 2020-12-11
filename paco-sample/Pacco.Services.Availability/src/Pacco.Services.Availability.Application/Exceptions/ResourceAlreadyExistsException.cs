@@ -4,7 +4,7 @@ namespace Pacco.Services.Availability.Application.Exceptions
 {
     public class ResourceAlreadyExistsException : AppException
     {
-        public override string Code { get; } = "resource_already_exists";
+        public override string Code { get; } = "resource_already_exists"; // can to translate to particular language with globalization in front end
         public Guid Id { get; }
 
         public ResourceAlreadyExistsException(Guid id) : base($"Resource with id: {id} already exists.")
