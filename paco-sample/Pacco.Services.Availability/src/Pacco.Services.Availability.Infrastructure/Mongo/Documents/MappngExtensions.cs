@@ -12,7 +12,7 @@ namespace Pacco.Services.Availability.Infrastructure.Mongo.Documents
         // we use constructor rather than factory for resource because we don't want the events
         public static Resource AsEntity(this ResourceDocument document)
             => new Resource(document.Id, document.Tags, document.Reservations
-                .Select(r => new Reservation(r.TimeStamp.AsDateTime(), r.Priority)), document.Version);
+                .Select(r => new Reservation(r.TimeStamp.AsDateTime(), r.Priority)), document.Version); // we fetch the resource version from document object also for concurrency purpose
         
         public static ResourceDocument AsDocument(this Resource entity)
             => new ResourceDocument

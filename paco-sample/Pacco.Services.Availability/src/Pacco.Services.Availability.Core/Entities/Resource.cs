@@ -67,6 +67,10 @@ namespace Pacco.Services.Availability.Core.Entities
 
         public void AddReservation(Reservation reservation)
         {
+            // checking collition -> we need to check we have same reservation in same day then we need to check the priority then if incoming reservation has
+            // higher priority we can expropriated this then throw an exception
+
+
             var hasCollidingReservation = _reservations.Any(HasTheSameReservationDate);
             if (hasCollidingReservation)
             {
@@ -78,12 +82,20 @@ namespace Pacco.Services.Availability.Core.Entities
 
                 if (_reservations.Remove(collidingReservation))
                 {
+                    // add internal domain event
+                    // with adding event our verssion will be increase
                     AddEvent(new ReservationCanceled(this, collidingReservation));
                 }
             }
 
             if (_reservations.Add(reservation))
             {
+                // add internal domain event
+                // with adding event our verssion will be increase
+
+                // the goal of our domain events are some internal event handlers to different pieces and we don't have to keep every thing in single handler or 
+                // if we want to publish some event to other services in our distributed system we can translate this domain event to
+                // integration event. our domain will not leak to out side of world and the we just publish different payload maybe some part of our domain
                 AddEvent(new ReservationAdded(this, reservation));
             }
 

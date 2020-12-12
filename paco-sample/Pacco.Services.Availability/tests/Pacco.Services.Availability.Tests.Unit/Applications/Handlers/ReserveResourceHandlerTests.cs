@@ -61,8 +61,10 @@ namespace Pacco.Services.Availability.Tests.Unit.Applications.Handlers
             _customersServiceClient = Substitute.For<ICustomersServiceClient>();
             _eventProcessor = Substitute.For<IEventProcessor>();
             _appContext = Substitute.For<IAppContext>();
-            _handler = new ReserveResourceHandler(_resourcesRepository, _customersServiceClient, _eventProcessor,
-                _appContext);
+            _handler = new ReserveResourceHandler(_resourcesRepository//, 
+            //_customersServiceClient, _eventProcessor,
+                //_appContext
+                );
         }
 
         #endregion

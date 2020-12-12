@@ -1,0 +1,32 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Availibility-API",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "console": "externalTerminal",
+            "program": "${workspaceFolder}/src/Pacco.Services.Availability.Api/bin/Debug/netcoreapp3.1/Pacco.Services.Availability.Api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Pacco.Services.Availability.Api",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "local"
+            }
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        }
+    ]
+}

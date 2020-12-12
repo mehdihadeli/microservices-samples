@@ -27,6 +27,9 @@ namespace Pacco.Services.Availability.Application.Commands.Handlers
             //in our handler we dont catch our exception because of duplication of code everywhere and in our handler we focus on happy path we dont handle error handling and logging in application layer
             //we handle this responsibility in infrastructure layer
             
+            // whenever we start to add additional logging, exception handling, retry policy, tracing, monitoring, ..., our application handlers will remain the same and all
+            // additional cross cutting concerns around them will be kept in different layer (infra) and application logic doesn't change at all.
+            
             if (await _repository.ExistsAsync(command.ResourceId))
             {
                 // this is not a domain exception because doesn't exist resource is not domain concern, from domain perspective resource is always there
