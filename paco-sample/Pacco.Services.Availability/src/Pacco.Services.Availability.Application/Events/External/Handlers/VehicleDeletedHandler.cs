@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using MicroBootstrap.Commands.Dispatchers;
 using MicroBootstrap.Events;
-using MicroBootstrap.RabbitMq;
 using Pacco.Services.Availability.Application.Commands;
 
 namespace Pacco.Services.Availability.Application.Events.External.Handlers

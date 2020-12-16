@@ -1,6 +1,6 @@
 using System;
 using MicroBootstrap.Events;
-using MicroBootstrap.Messages;
+using MicroBootstrap.MessageBrokers;
 
 namespace Pacco.Services.Availability.Application.Events.External
 {

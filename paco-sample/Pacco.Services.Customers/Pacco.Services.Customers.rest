@@ -1,5 +1,5 @@
 @url = http://localhost:5002
-@customerId = 00000000-0000-0000-0000-000000000000
+@customerId = 94e590c4-ff31-43d3-a675-2e2252edcf9d
 @state = valid
 
 ###

@@ -46,8 +46,7 @@ namespace DShop.Common.RabbitMq
                 //service locator
                 var commandHandler = _serviceProvider.GetService<ICommandHandler<TCommand>>();
 
-                return await TryHandleAsync(command, correlationContext,
-                    () => commandHandler.HandleAsync(command, correlationContext), onError);
+                return await TryHandleAsync(command, correlationContext, () => commandHandler.HandleAsync(command, correlationContext), onError);
             });
 
             return this;

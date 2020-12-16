@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using MicroBootstrap.Commands;
-using MicroBootstrap.RabbitMq;
 using Pacco.Services.Availability.Application.Exceptions;
 using Pacco.Services.Availability.Application.Services;
 using Pacco.Services.Availability.Core.Entities;

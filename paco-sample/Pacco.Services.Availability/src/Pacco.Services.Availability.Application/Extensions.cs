@@ -13,7 +13,9 @@ namespace Pacco.Services.Availability.Application
             => serviceCollection
                 .AddCommandHandlers()
                 .AddInMemoryCommandDispatcher()
+
+                // register our event handlers
                 .AddEventHandlers()
-                .AddInMemoryEventDispatcher();
+                .AddInMemoryEventDispatcher(); //it is in-memory and sync and don't use rabbitmq
     }
 }

@@ -1,8 +1,8 @@
 
 using Newtonsoft.Json;
 using Pacco.Services.Availability.Application;
-using MicroBootstrap.RabbitMq;
 using Microsoft.AspNetCore.Http;
+using MicroBootstrap.MessageBrokers;
 
 namespace Pacco.Services.Availability.Infrastructure.Contexts
 {
