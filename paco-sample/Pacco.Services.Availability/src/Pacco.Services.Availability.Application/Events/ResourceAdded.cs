@@ -3,7 +3,6 @@ using MicroBootstrap.Events;
 
 namespace Pacco.Services.Availability.Application.Events
 {
-    [Contract]
     public class ResourceAdded : IEvent
     {
         public Guid ResourceId { get; }

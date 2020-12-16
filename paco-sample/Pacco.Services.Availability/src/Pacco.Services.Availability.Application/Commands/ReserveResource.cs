@@ -4,7 +4,6 @@ using MicroBootstrap.Commands;
 namespace Pacco.Services.Availability.Application.Commands
 {
     // our intention and should be imperative and immutable object
-    [Contract]
     public class ReserveResource : ICommand
     {
         public Guid ResourceId { get; }

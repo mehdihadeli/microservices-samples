@@ -57,8 +57,7 @@ namespace Pacco.Services.Availability.Api
                     .Post<AddResource>("resources",
                         afterDispatch: (cmd, ctx) => ctx.Response.Created($"resources/{cmd.ResourceId}"))
                     .Post<ReserveResource>("resources/{resourceId}/reservations/{dateTime}") // for post with same id we get 500 internal error but it is actually user abd data and bad request
-                    .Delete<ReleaseResourceReservation>("resources/{resourceId}/reservations/{dateTime}")
-                    .Delete<DeleteResource>("resources/{resourceId}")))
+                    ))
             .UseLogging()
             .UseVault();
 

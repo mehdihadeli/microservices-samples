@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using MicroBootstrap.Commands;
 using Pacco.Services.Availability.Application.Exceptions;
-using Pacco.Services.Availability.Application.Services;
 using Pacco.Services.Availability.Core.Entities;
 using Pacco.Services.Availability.Core.Repositories;
 
@@ -10,14 +9,10 @@ namespace Pacco.Services.Availability.Application.Commands.Handlers
     internal sealed class AddResourceHandler : ICommandHandler<AddResource>
     {
         private readonly IResourcesRepository _repository;
-        private readonly IEventProcessor _eventProcessor;
 
-        public AddResourceHandler(IResourcesRepository repository
-            //, IEventProcessor eventProcessor
-            )
+        public AddResourceHandler(IResourcesRepository repository)
         {
             _repository = repository;
-            //_eventProcessor = eventProcessor;
         }
 
 
@@ -39,7 +34,6 @@ namespace Pacco.Services.Availability.Application.Commands.Handlers
             // here we use guid for our id but we can use snow-flake approach  
             var resource = Resource.Create(command.ResourceId, command.Tags);
             await _repository.AddAsync(resource);
-            // await _eventProcessor.ProcessAsync(resource.Events);
          }
     }
 }
