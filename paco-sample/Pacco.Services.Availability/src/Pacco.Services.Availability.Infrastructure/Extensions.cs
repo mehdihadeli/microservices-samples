@@ -2,17 +2,21 @@
 using Microsoft.Extensions.DependencyInjection;
 using MicroBootstrap;
 using Pacco.Services.Availability.Application.Commands;
-using Pacco.Services.Availability.Application.Events.External;
 using Pacco.Services.Availability.Core.Repositories;
 using Pacco.Services.Availability.Infrastructure.Exceptions;
 using Pacco.Services.Availability.Infrastructure.Mongo.Documents;
 using Pacco.Services.Availability.Infrastructure.Mongo.Repositories;
 using MicroBootstrap.WebApi;
+using MicroBootstrap.WebApi.CQRS;
 using MicroBootstrap.Mongo;
 using MicroBootstrap.Queries;
 using Microsoft.AspNetCore.Builder;
 using MicroBootstrap.MessageBrokers;
 using MicroBootstrap.MessageBrokers.RabbitMQ;
+using Pacco.Services.Availability.Application.Services;
+using Pacco.Services.Availability.Infrastructure.Services;
+using Pacco.Services.Availability.Application.IntegrationEvents.External;
+using Pacco.Services.Availability.Application;
 
 namespace Pacco.Services.Availability.Infrastructure
 {
@@ -21,6 +25,9 @@ namespace Pacco.Services.Availability.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddTransient<IResourcesRepository, ResourcesMongoRepository>();
+            services.AddTransient<IMessageBroker, MessageBroker>();
+            services.AddSingleton<IEventMapper, EventMapper>();
+            services.AddTransient<IEventProcessor, EventProcessor>();
 
             return services
                     .AddInitializers()
@@ -29,7 +36,8 @@ namespace Pacco.Services.Availability.Infrastructure
                     .AddInMemoryQueryDispatcher()
                     .AddMongo()
                     .AddMongoRepository<ResourceDocument, Guid>("resources")
-                    .AddRabbitMQ();
+                    .AddRabbitMQ()
+                    .AddExceptionToMessageMapper<ExceptionToMessageMapper>(); //it only trigger in async way with rabbit for the web api make sense to throw or publish this rejected events maybe doesn't up to us
         }
 
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
@@ -42,9 +50,10 @@ namespace Pacco.Services.Availability.Infrastructure
             //and we can't share package between them. so for dto and message contract we use copy and past in microservice (just local copy)
 
             app.UseErrorHandler() // it is a middleware for handling error and use ExceptionToResponseMapper
+                .UsePublicContracts<ContractAttribute>() //middleware for handling our contracts in /_contracts endpoint will show our commands and events
                 .UseInitializers()
                 .UseRabbitMQ() // it is not a middleware, just for convention purpose
-   
+
                 // what the rabbitmq do in behind the scenes is that we will have this publisher/subscriber model when message gets into queue and we have this connection between our service and particular queue 
                 // that bind to th exchange and there is a message waiting for us in the queue and rabbitmq will send us a message to us with a push mechanism and it push message to us and we get this message with our subscription.
 
@@ -55,12 +64,12 @@ namespace Pacco.Services.Availability.Infrastructure
                 .SubscribeCommand<ReserveResource>()//for handling command from rabbitmq side asynchronously and finding command handler for receive message in subscribe, beside of handling it directly from web api in-memory and synchronously
                 .SubscribeEvent<CustomerCreated>() //for handling event from rabbitmq side asynchronously and finding event handler for receive message in subscribe, beside of handling it directly from web api in-memory and synchronously
 
-                // we cand handle response from message broker with a callback with Subscribe method manually without SubscribeCommand and SubscribeEvent
-                // .Subscribe<CustomerCreated>(async (serviceProvider, @event, obj) => 
-                // {
-                //     using var scope = serviceProvider.CreateScope();
-                //     await scope.ServiceProvider.GetRequiredService<IEventHandler<CustomerCreated>>().HandleAsync(@event);
-                // });
+            // we cand handle response from message broker with a callback with Subscribe method manually without SubscribeCommand and SubscribeEvent
+            // .Subscribe<CustomerCreated>(async (serviceProvider, @event, obj) => 
+            // {
+            //     using var scope = serviceProvider.CreateScope();
+            //     await scope.ServiceProvider.GetRequiredService<IEventHandler<CustomerCreated>>().HandleAsync(@event);
+            // });
             ;
 
             return app;

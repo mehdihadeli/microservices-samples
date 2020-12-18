@@ -3,6 +3,6 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-     <PackageReference Include="MicroBootstrap" Version="1.2.19-dev" />
+     <PackageReference Include="MicroBootstrap" Version="1.2.21-dev" />
   </ItemGroup>
 </Project>

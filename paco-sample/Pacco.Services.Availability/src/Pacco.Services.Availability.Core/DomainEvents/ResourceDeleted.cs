@@ -1,6 +1,6 @@
 using Pacco.Services.Availability.Core.Entities;
 
-namespace Pacco.Services.Availability.Core.Events
+namespace Pacco.Services.Availability.Core.DomainEvents
 {
     public class ResourceDeleted : IDomainEvent
     {

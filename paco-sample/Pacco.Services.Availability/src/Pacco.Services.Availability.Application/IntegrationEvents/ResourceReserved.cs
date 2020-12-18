@@ -1,8 +1,9 @@
 using System;
 using MicroBootstrap.Events;
 
-namespace Pacco.Services.Availability.Application.Events
+namespace Pacco.Services.Availability.Application.IntegrationEvents
 {
+    [Contract]
     public class ResourceReserved : IEvent
     {
         public Guid ResourceId { get; }

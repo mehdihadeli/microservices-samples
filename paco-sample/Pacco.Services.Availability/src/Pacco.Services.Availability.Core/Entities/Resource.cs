@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Pacco.Services.Availability.Core.Events;
+using Pacco.Services.Availability.Core.DomainEvents;
 using Pacco.Services.Availability.Core.Exceptions;
 using Pacco.Services.Availability.Core.ValueObjects;
 

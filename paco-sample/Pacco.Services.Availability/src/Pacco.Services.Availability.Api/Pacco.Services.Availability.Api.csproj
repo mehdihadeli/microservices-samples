@@ -5,7 +5,7 @@
     <RootNamespace>Pacco.Services.Availability.Api</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MicroBootstrap" Version="1.2.19-dev" />
+    <PackageReference Include="MicroBootstrap" Version="1.2.21-dev" />
     <PackageReference Include="Scrutor" Version="3.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />
   </ItemGroup>

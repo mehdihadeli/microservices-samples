@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using Pacco.Services.Availability.Core.Events;
+using Pacco.Services.Availability.Core.DomainEvents;
 
 namespace Pacco.Services.Availability.Core.Entities
 {

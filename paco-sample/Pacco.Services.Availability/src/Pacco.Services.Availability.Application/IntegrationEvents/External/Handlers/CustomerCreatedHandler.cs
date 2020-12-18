@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using MicroBootstrap.Events;
 using Microsoft.Extensions.Logging;
 
-namespace Pacco.Services.Availability.Application.Events.External.Handlers
+namespace Pacco.Services.Availability.Application.IntegrationEvents.External.Handlers
 {
     public class CustomerCreatedHandler : IEventHandler<CustomerCreated>
     {

@@ -8,6 +8,8 @@ using Pacco.Services.Availability.Core.Exceptions;
 
 namespace Pacco.Services.Availability.Infrastructure.Exceptions
 {
+    // simple middleware for handling exceptions on the http level so whenever we hit a handler for the web api and there is ongoing http request
+    // and there is an issue and there is an exception we just catch it and map it depending on exception type and return custom error object
     internal sealed class ExceptionToResponseMapper : IExceptionToResponseMapper
     {
         private static readonly ConcurrentDictionary<Type, string> Codes = new ConcurrentDictionary<Type, string>();

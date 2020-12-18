@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "3ec7e955-95b8-4efd-843f-cc4d8e6d0484",
+		"name": "availibility",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Requests",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/resources?matchAllTags=false&tags=[\"vehicle\", \"armor\"]",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"resources"
+					],
+					"query": [
+						{
+							"key": "tags",
+							"value": "[\"vehicle\", \"armor\"]\n",
+							"disabled": true
+						},
+						{
+							"key": "matchAllTags",
+							"value": "false"
+						},
+						{
+							"key": "tags",
+							"value": "[\"vehicle\", \"armor\"]"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n  \"resourceId\": \"00000000-0000-0000-0000-000000000014\",\r\n  \"tags\": [\"vehicle\", \"armor\"]\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/resources",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"resources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Request By ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/resources/00000000-0000-0000-0000-000000000014",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"resources",
+						"00000000-0000-0000-0000-000000000014"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

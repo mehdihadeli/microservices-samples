@@ -1,7 +1,7 @@
 using Pacco.Services.Availability.Core.Entities;
 using Pacco.Services.Availability.Core.ValueObjects;
 
-namespace Pacco.Services.Availability.Core.Events
+namespace Pacco.Services.Availability.Core.DomainEvents
 {
     public class ReservationReleased : IDomainEvent
     {
