@@ -7,6 +7,7 @@ using MicroBootstrap.MessageBrokers;
 using Microsoft.Extensions.Logging;
 using Pacco.Services.Availability.Application.Services;
 using MicroBootstrap;
+using MicroBootstrap.MessageBrokers.Outbox;
 
 namespace Pacco.Services.Availability.Infrastructure.Services
 {
@@ -24,8 +25,10 @@ namespace Pacco.Services.Availability.Infrastructure.Services
     {
         private readonly IBusPublisher _busPublisher;
         private readonly ILogger<MessageBroker> _logger;
-        public MessageBroker(IBusPublisher busPublisher, ILogger<MessageBroker> logger)
+        private readonly IMessageOutbox _messageOutbox;
+        public MessageBroker(IBusPublisher busPublisher, ILogger<MessageBroker> logger, IMessageOutbox messageOutbox)
         {
+            this._messageOutbox = messageOutbox;
             this._logger = logger;
             this._busPublisher = busPublisher;
 
@@ -53,7 +56,16 @@ namespace Pacco.Services.Availability.Infrastructure.Services
 
                 //here we publish our message to rabbitmq but we don't have any receivers, we can create a queue on ui manually and
                 //bind this queue with a routing key to a exchange here 'availability'
-                await _busPublisher.PublishAsync(@event, messageId);
+
+                // //it publish directly message to message broker but we want to use outbox pattern
+                // await _busPublisher.PublishAsync(@event, messageId);
+                
+                //instead of sending message directly to broker we send it to outbox and outbox store it in current transaction for inbox and outbox then outbox processor with its background
+                //service will publish all unsent messages
+                
+                //this part is responsible just for outbox and will guarantee that message will eventually even we have failure, assuming transaction succeeded and processor will start as a background microservice
+                //we look for outbox collection and seek for messages that were not sent and it simply publish them
+                await _messageOutbox.SendAsync(@event, messageId);
             }
 
         }

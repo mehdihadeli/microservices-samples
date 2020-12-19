@@ -17,6 +17,11 @@ using Pacco.Services.Availability.Application.Services;
 using Pacco.Services.Availability.Infrastructure.Services;
 using Pacco.Services.Availability.Application.IntegrationEvents.External;
 using Pacco.Services.Availability.Application;
+using MicroBootstrap.Commands;
+using Pacco.Services.Availability.Infrastructure.Decorators;
+using MicroBootstrap.Events;
+using MicroBootstrap.MessageBrokers.Outbox.Mongo;
+using MicroBootstrap.MessageBrokers.Outbox;
 
 namespace Pacco.Services.Availability.Infrastructure
 {
@@ -28,6 +33,8 @@ namespace Pacco.Services.Availability.Infrastructure
             services.AddTransient<IMessageBroker, MessageBroker>();
             services.AddSingleton<IEventMapper, EventMapper>();
             services.AddTransient<IEventProcessor, EventProcessor>();
+            services.TryDecorate(typeof(ICommandHandler<>), typeof(OutboxCommandHandlerDecorator<>));
+            services.TryDecorate(typeof(IEventHandler<>), typeof(OutboxEventHandlerDecorator<>));
 
             return services
                     .AddInitializers()
@@ -37,6 +44,7 @@ namespace Pacco.Services.Availability.Infrastructure
                     .AddMongo()
                     .AddMongoRepository<ResourceDocument, Guid>("resources")
                     .AddRabbitMQ()
+                    .AddMessageOutbox(o => o.AddMongo())
                     .AddExceptionToMessageMapper<ExceptionToMessageMapper>(); //it only trigger in async way with rabbit for the web api make sense to throw or publish this rejected events maybe doesn't up to us
         }
 
