@@ -24,6 +24,7 @@ namespace Pacco.Services.Availability.Infrastructure.Decorators
 
             var messageProperties = messagePropertyAccessor.MessageProperties;
             //sometimes messageId property is null because it is a message received from web api not from rabbitmq we can create a random guid
+            //or we can bypass using of outbox for web api calls
             _messageId = string.IsNullOrWhiteSpace(messageProperties?.MessageId) ? Guid.NewGuid().ToString("N") : messageProperties.MessageId;
         }
         // handling inbox for check unique message

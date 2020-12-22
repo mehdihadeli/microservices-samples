@@ -36,7 +36,7 @@ namespace Pacco.Services.Availability.Api
         // we get ride of controllers and here startup.cs is not required and we get ride of startup.cs
         // here we use of terminal middlewares, because we want to get ride of internal middlewares for increase performance like NancyFx,
         // but we also have some thing like model binding ourself but if we need performance.
-        
+
         // controller should be very thin and should be no validation or logic, it should be a simply take the request and process this using some of
         // our component in the application, in cqrs its job is only execute dispatcher
 
@@ -50,12 +50,18 @@ namespace Pacco.Services.Availability.Api
                 .UseInfrastructure()
                 // execute same code within controller, either invoke IQueryDispatcher orr ICommandDispatcher for sending command and query
                 // if we use get then query dispatcher will be performed 
+
+                //web api endpoints which works synchronously but we also have asynchronous messages with use SubscribeCommand and SubscribeEvent in infra layer so we able to receive this messages comming 
+                //from message broker and process them asychrosuly 
                 .UseDispatcherEndpoints(endpoints => endpoints
                     .Get("", ctx => ctx.Response.WriteAsync(ctx.RequestServices.GetService<AppOptions>().Name))
                     .Get<GetResources, IEnumerable<ResourceDto>>("resources")
                     .Get<GetResource, ResourceDto>("resources/{resourceId}") // since we want to invoke our dispatcher behind the scenes we can use generic get for pass query (input), output
                     .Post<AddResource>("resources",
-                        afterDispatch: (cmd, ctx) => ctx.Response.Created($"resources/{cmd.ResourceId}"))
+                        afterDispatch: (cmd, ctx) =>
+                        {
+                            return ctx.Response.Created($"resources/{cmd.ResourceId}");
+                        })
                     .Post<ReserveResource>("resources/{resourceId}/reservations/{dateTime}") // for post with same id we get 500 internal error but it is actually user abd data and bad request
                     ))
             .UseLogging()

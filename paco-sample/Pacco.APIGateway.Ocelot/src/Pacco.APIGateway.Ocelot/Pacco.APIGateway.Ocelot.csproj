@@ -5,19 +5,10 @@
     <RootNamespace>Pacco.APIGateway.Ocelot</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Convey.Auth" Version="0.4.*"/>
-    <PackageReference Include="Convey.Logging" Version="0.4.*"/>
-    <PackageReference Include="Convey.MessageBrokers.CQRS" Version="0.4.*"/>
-    <PackageReference Include="Convey.MessageBrokers.RabbitMQ" Version="0.4.*"/>
-    <PackageReference Include="Convey.Metrics.AppMetrics" Version="0.4.*"/>
-    <PackageReference Include="Convey.Secrets.Vault" Version="0.4.*"/>
-    <PackageReference Include="Convey.Security" Version="0.4.*"/>
-    <PackageReference Include="Convey.Tracing.Jaeger" Version="0.4.*"/>
-    <PackageReference Include="Convey.Tracing.Jaeger.RabbitMQ" Version="0.4.*"/>
-    <PackageReference Include="Convey.WebApi" Version="0.4.*"/>
-    <PackageReference Include="Ocelot" Version="15.0.6"/>
-    <PackageReference Include="Ocelot.Provider.Polly" Version="15.0.6"/>
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.2"/>
+    <PackageReference Include="MicroBootstrap" Version="1.2.33-dev" />
+    <PackageReference Include="Ocelot" Version="15.0.6" />
+    <PackageReference Include="Ocelot.Provider.Polly" Version="15.0.6" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.2" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="ocelot.json">
@@ -27,6 +18,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="certs\**" CopyToPublishDirectory="Always"/>
+    <Content Include="certs\**" CopyToPublishDirectory="Always" />
   </ItemGroup>
 </Project>

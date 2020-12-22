@@ -71,6 +71,8 @@ namespace Pacco.Services.Availability.Infrastructure
 
                 .SubscribeCommand<ReserveResource>()//for handling command from rabbitmq side asynchronously and finding command handler for receive message in subscribe, beside of handling it directly from web api in-memory and synchronously
                 .SubscribeEvent<CustomerCreated>() //for handling event from rabbitmq side asynchronously and finding event handler for receive message in subscribe, beside of handling it directly from web api in-memory and synchronously
+                .SubscribeCommand<AddResource>()
+
 
             // we cand handle response from message broker with a callback with Subscribe method manually without SubscribeCommand and SubscribeEvent
             // .Subscribe<CustomerCreated>(async (serviceProvider, @event, obj) => 

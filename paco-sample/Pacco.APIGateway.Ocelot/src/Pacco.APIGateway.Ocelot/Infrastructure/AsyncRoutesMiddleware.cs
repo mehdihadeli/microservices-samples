@@ -1,37 +1,33 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Convey.MessageBrokers.RabbitMQ;
-using Convey.MessageBrokers.RabbitMQ.Conventions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using OpenTracing;
+using MicroBootstrap.MessageBrokers;
+using MicroBootstrap.MessageBrokers.RabbitMQ;
 
 namespace Pacco.APIGateway.Ocelot.Infrastructure
 {
     internal sealed class AsyncRoutesMiddleware : IMiddleware
     {
-        private static readonly ConcurrentDictionary<string, IConventions> Conventions =
-            new ConcurrentDictionary<string, IConventions>();
-
-        private readonly IRabbitMqClient _rabbitMqClient;
+        private readonly IBusPublisher _busPublisher;
         private readonly IPayloadBuilder _payloadBuilder;
         private readonly ITracer _tracer;
         private readonly ICorrelationContextBuilder _correlationContextBuilder;
         private readonly IAnonymousRouteValidator _anonymousRouteValidator;
-        private readonly IDictionary<string, AsyncRouteOptions> _routes;
+        private readonly IDictionary<string, AsyncRouteOptions> _routes; // we defined our async endpoints in our AsyncRoutes section of ocelot.json
         private readonly bool _authenticate;
 
-        public AsyncRoutesMiddleware(IRabbitMqClient rabbitMqClient, IPayloadBuilder payloadBuilder, ITracer tracer,
+        public AsyncRoutesMiddleware(IBusPublisher busPublisher, IPayloadBuilder payloadBuilder, ITracer tracer,
             ICorrelationContextBuilder correlationContextBuilder, IAnonymousRouteValidator anonymousRouteValidator,
             IOptions<AsyncRoutesOptions> asyncRoutesOptions)
         {
-            _rabbitMqClient = rabbitMqClient;
+            _busPublisher = busPublisher;
             _payloadBuilder = payloadBuilder;
             _tracer = tracer;
             _correlationContextBuilder = correlationContextBuilder;
@@ -68,27 +64,27 @@ namespace Pacco.APIGateway.Ocelot.Infrastructure
                 context.User = authenticateResult.Principal;
             }
 
-            if (!Conventions.TryGetValue(key, out var conventions))
-            {
-                conventions = new MessageConventions(typeof(object), route.RoutingKey, route.Exchange, null);
-                Conventions.TryAdd(key, conventions);
-            }
-
             var spanContext = _tracer.ActiveSpan is null ? string.Empty : _tracer.ActiveSpan.Context.ToString();
-            var message = await _payloadBuilder.BuildFromJsonAsync<object>(context.Request);
+            var message = await _payloadBuilder.BuildFromJsonAsync<dynamic>(context.Request);
             var resourceId = Guid.NewGuid().ToString("N");
             if (context.Request.Method == "POST" && message is JObject jObject)
             {
                 jObject.SetResourceId(resourceId);
             }
 
+            // we send a unique messageId with our payload from our web api to rabbitmq to track our message in rabbitmq, we set this messageId in rammitmq messageId property. this messageId in future
+            // will pass to our subscribers. and we use inbox and outbox pattern for handling this messageId
             var messageId = Guid.NewGuid().ToString("N");
             var correlationId = Guid.NewGuid().ToString("N");
             var correlationContext = _correlationContextBuilder.Build(context, correlationId, spanContext,
                 route.RoutingKey, resourceId);
-            _rabbitMqClient.Send(message, conventions, messageId, correlationId, spanContext, correlationContext);
+            await _busPublisher.PublishAsync<dynamic>(message, messageId, correlationId, spanContext,
+                correlationContext,
+                messageConventions: new MessageConventions(typeof(object), route.RoutingKey, route.Exchange,
+                    String.Empty));
             context.Response.StatusCode = 202;
             context.Response.SetOperationHeader(correlationId);
+            //so if it is async endpoint call, we don't continue for using ocelot middleware with calling next(context) method and we will terminate middleware pipelines here (terminal middleware) 
         }
 
         private static string GetKey(HttpContext context) => $"{context.Request.Method} {context.Request.Path}";

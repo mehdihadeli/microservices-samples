@@ -36,23 +36,21 @@ Content-Type: application/json
   "tags": {{tags}}
 }
 
-@resourceId = 00000000-0000-0000-0000-000000000001
+###
+@resourceId = 00000000-0000-0000-0000-000000000032
 @tags = ["vehicle", "armor"]
 
-###
 POST {{api}}/availability/resources
-Authorization: Bearer {{accessToken}}
+# Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
   "resourceId": "{{resourceId}}",
   "tags": {{tags}}
 }
-
+###
 @dateTime = 2020-05-01
 @customerId = 00000000-0000-0000-0000-000000000001
-
-###
 POST {{api}}/availability/resources/reservations
 Authorization: Bearer {{accessToken}}
 Content-Type: application/json

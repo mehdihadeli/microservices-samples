@@ -50,7 +50,13 @@ namespace Pacco.Services.Availability.Infrastructure.Services
                 if (@event is null)
                     continue;
 
-                // we can rely on a library to create a 'unique message event id' for us but we can create a message id with own strategy like guid or Snowflake id
+                //we can rely on a library to create a 'unique message event id' for us but we can create a message id with own strategy like guid or Snowflake id
+
+                //this messageId will generate whenever we publish new message and this unique messageId will set in messageId of rabbitmq properties for tracking message in rabbitmq
+
+                //or we generate a unique messageId and publish it with our payload to rabbitmq in web api to track this message that send from web api to rabbitmq, we set this messageId in rammitmq messageId property.
+
+                // will pass to our subscribers. and we use inbox and outbox pattern for handling this messageId
                 var messageId = Guid.NewGuid().ToString("N");
                 _logger.LogTrace($"Publishing an integration event: '{@event.GetType().Name.ToSnakeCase()}' with ID : '{messageId}'");
 
@@ -59,13 +65,18 @@ namespace Pacco.Services.Availability.Infrastructure.Services
 
                 // //it publish directly message to message broker but we want to use outbox pattern
                 // await _busPublisher.PublishAsync(@event, messageId);
-                
+
                 //instead of sending message directly to broker we send it to outbox and outbox store it in current transaction for inbox and outbox then outbox processor with its background
                 //service will publish all unsent messages
-                
+
                 //this part is responsible just for outbox and will guarantee that message will eventually even we have failure, assuming transaction succeeded and processor will start as a background microservice
                 //we look for outbox collection and seek for messages that were not sent and it simply publish them
-                await _messageOutbox.SendAsync(@event, messageId);
+                if (_messageOutbox.Enabled)
+                {
+                    await _messageOutbox.SendAsync(@event, messageId: messageId);
+                    continue;
+                }
+                await _busPublisher.PublishAsync(@event, messageId: messageId);
             }
 
         }
