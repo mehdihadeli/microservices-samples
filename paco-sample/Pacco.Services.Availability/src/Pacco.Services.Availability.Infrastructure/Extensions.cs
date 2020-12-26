@@ -22,6 +22,8 @@ using Pacco.Services.Availability.Infrastructure.Decorators;
 using MicroBootstrap.Events;
 using MicroBootstrap.MessageBrokers.Outbox.Mongo;
 using MicroBootstrap.MessageBrokers.Outbox;
+using Pacco.Services.Availability.Application.IntegrationEvents;
+using Pacco.Services.Availability.Core.DomainEvents;
 
 namespace Pacco.Services.Availability.Infrastructure
 {

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Threading.Tasks;
-using Convey.CQRS.Commands;
-using Convey.CQRS.Events;
-using Convey.MessageBrokers;
+using MicroBootstrap.Commands;
+using MicroBootstrap.Events;
+using MicroBootstrap.MessageBrokers;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Pacco.Services.Operations.Api.Types;
@@ -18,6 +18,7 @@ namespace Pacco.Services.Operations.Api.Infrastructure
     {
         public static IBusSubscriber SubscribeMessages(this IBusSubscriber subscriber)
         {
+            //dynamically load all commands and events from json files and instantiate them with DLR and then subscribe them
             const string path = "messages.json";
             if (!File.Exists(path))
             {
@@ -40,6 +41,9 @@ namespace Pacco.Services.Operations.Api.Infrastructure
             var events = new List<Event>();
             var rejectedEvents = new List<Types.RejectedEvent>();
             var assemblyName = new AssemblyName("Pacco.Services.Operations.Api.Messages");
+            //https://flylib.com/books/en/4.453.1.58/1/
+            //http://www.abhisheksur.com/2010/10/dlr-using-reflectionemit-in-depth-part.html
+            //define a 'transient assembly' and run it in the fly
             var assemblyBuilder = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
             var moduleBuilder = assemblyBuilder.DefineDynamicModule(assemblyName.Name);
             foreach (var (_, serviceMessages) in servicesMessages)
@@ -65,15 +69,15 @@ namespace Pacco.Services.Operations.Api.Infrastructure
             {
                 yield break;
             }
-            
+
             foreach (var message in messages)
             {
                 var type = typeof(T);
                 var typeBuilder = moduleBuilder.DefineType(message, TypeAttributes.Public, type);
-                var attributeConstructorParams = new[] {typeof(string), typeof(string), typeof(string), typeof(bool)};
+                var attributeConstructorParams = new[] { typeof(string), typeof(string), typeof(string), typeof(bool) };
                 var constructorInfo = typeof(MessageAttribute).GetConstructor(attributeConstructorParams);
                 var customAttributeBuilder = new CustomAttributeBuilder(constructorInfo,
-                    new object[] {exchange, null, null, true});
+                    new object[] { exchange, null, null, true });
                 typeBuilder.SetCustomAttribute(customAttributeBuilder);
                 var newType = typeBuilder.CreateType();
                 var instance = Activator.CreateInstance(newType);
@@ -88,7 +92,7 @@ namespace Pacco.Services.Operations.Api.Infrastructure
             {
                 return;
             }
-            
+
             var subscribeMethod = subscriber.GetType().GetMethod(nameof(IBusSubscriber.Subscribe));
             if (subscribeMethod is null)
             {
@@ -98,10 +102,11 @@ namespace Pacco.Services.Operations.Api.Infrastructure
             foreach (var message in messages)
             {
                 subscribeMethod.MakeGenericMethod(message.GetType()).Invoke(subscriber,
-                    new object[] {(Func<IServiceProvider, ICommand, object, Task>) Handle});
+                    new object[] { (Func<IServiceProvider, ICommand, object, Task>)Handle });
             }
-            
+
             static Task Handle(IServiceProvider sp, ICommand command, object ctx) =>
+                // we handle the commands with our generic command handler 'GenericCommandHandler' for handling operation
                 sp.GetService<ICommandHandler<ICommand>>().HandleAsync(command);
         }
 
@@ -111,7 +116,7 @@ namespace Pacco.Services.Operations.Api.Infrastructure
             {
                 return;
             }
-            
+
             var subscribeMethod = subscriber.GetType().GetMethod(nameof(IBusSubscriber.Subscribe));
             if (subscribeMethod is null)
             {
@@ -121,10 +126,11 @@ namespace Pacco.Services.Operations.Api.Infrastructure
             foreach (var message in messages)
             {
                 subscribeMethod.MakeGenericMethod(message.GetType()).Invoke(subscriber,
-                    new object[] {(Func<IServiceProvider, IEvent, object, Task>) Handle});
+                    new object[] { (Func<IServiceProvider, IEvent, object, Task>)Handle });
             }
 
             static Task Handle(IServiceProvider sp, IEvent @event, object ctx) =>
+                // we handle the events with our generic event handler 'GenericEventHandler' for handling operation
                 sp.GetService<IEventHandler<IEvent>>().HandleAsync(@event);
         }
 
@@ -134,7 +140,7 @@ namespace Pacco.Services.Operations.Api.Infrastructure
             {
                 return;
             }
-            
+
             var subscribeMethod = subscriber.GetType().GetMethod(nameof(IBusSubscriber.Subscribe));
             if (subscribeMethod is null)
             {
@@ -144,7 +150,7 @@ namespace Pacco.Services.Operations.Api.Infrastructure
             foreach (var message in messages)
             {
                 subscribeMethod.MakeGenericMethod(message.GetType()).Invoke(subscriber,
-                    new object[] {(Func<IServiceProvider, IRejectedEvent, object, Task>) Handle});
+                    new object[] { (Func<IServiceProvider, IRejectedEvent, object, Task>)Handle });
             }
 
             static Task Handle(IServiceProvider sp, IRejectedEvent @event, object ctx) =>

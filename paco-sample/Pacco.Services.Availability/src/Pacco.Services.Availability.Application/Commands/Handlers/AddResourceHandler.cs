@@ -71,6 +71,8 @@ namespace Pacco.Services.Availability.Application.Commands.Handlers
             // Solution 2
             // --- previous approach has many duplicate code for all of our handlers ---
             // so we extract it into a IEventProcessor abstraction and inside in this event process we do all mapping and executing domain events and integration events by one line
+
+            //when we publish event we need infrastructure service with name of operation service that is subscribed to the ResourceAdded event and AddResource command to track correlation between command and event 
             await _eventProcessor.ProcessAsync(resource.Events);
 
             // for handling exception in rabbitmq level we use ExceptionToMessageMapper

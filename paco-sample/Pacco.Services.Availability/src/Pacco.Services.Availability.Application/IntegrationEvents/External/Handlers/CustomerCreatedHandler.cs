@@ -18,7 +18,7 @@ namespace Pacco.Services.Availability.Application.IntegrationEvents.External.Han
         //with command and query handler we have a dispatcher inside our controller and pass message from api layer to handler synchronsly. 
         //but what about event? how do we get the message to this handler from rabbitmq. we need to subscribe to the message to handle this event
 
-        //we can subscribe to this message in UseRabbitMQ.Sunscribe() method for both event and command generic way also SubscribeCommand() and SubscribeEvent because message broker don't any thing about command and event
+        //we can subscribe to this message in UseRabbitMQ.Subscribe() method for both event and command generic way also SubscribeCommand() and SubscribeEvent because message broker don't any thing about command and event
         //it is message to message.
 
         //with SubscribeEvent with a event type here 'CustomerCreated' event type

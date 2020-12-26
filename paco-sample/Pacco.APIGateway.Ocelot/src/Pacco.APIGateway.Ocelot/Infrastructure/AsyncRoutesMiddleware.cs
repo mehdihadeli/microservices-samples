@@ -10,6 +10,7 @@ using Newtonsoft.Json.Linq;
 using OpenTracing;
 using MicroBootstrap.MessageBrokers;
 using MicroBootstrap.MessageBrokers.RabbitMQ;
+using MicroBootstrap.MicroBootstrap.MessageBrokers.RabbitMQ.Conventions;
 
 namespace Pacco.APIGateway.Ocelot.Infrastructure
 {
@@ -74,15 +75,13 @@ namespace Pacco.APIGateway.Ocelot.Infrastructure
 
             // we send a unique messageId with our payload from our web api to rabbitmq to track our message in rabbitmq, we set this messageId in rammitmq messageId property. this messageId in future
             // will pass to our subscribers. and we use inbox and outbox pattern for handling this messageId
-            var messageId = Guid.NewGuid().ToString("N");
-            var correlationId = Guid.NewGuid().ToString("N");
+            var messageId = Guid.NewGuid().ToString("N");//this is unique per message type, each message has its own messageId in rabbitmq
+            var correlationId = Guid.NewGuid().ToString("N");//unique for whole message flow , here gateway initiate our correlationId along side our newly publish message to keep track of our request
             var correlationContext = _correlationContextBuilder.Build(context, correlationId, spanContext,
                 route.RoutingKey, resourceId);
             await _busPublisher.PublishAsync<dynamic>(message, messageId, correlationId, spanContext,
-                correlationContext,
-                messageConventions: new MessageConventions(typeof(object), route.RoutingKey, route.Exchange,
-                    String.Empty));
-            context.Response.StatusCode = 202;
+                correlationContext, messageConventions: new Conventions(typeof(object), route.RoutingKey, route.Exchange, String.Empty));
+            context.Response.StatusCode = 202; //we send 202 status code and a correlationId immediately to end user after we published message to the message broker 
             context.Response.SetOperationHeader(correlationId);
             //so if it is async endpoint call, we don't continue for using ocelot middleware with calling next(context) method and we will terminate middleware pipelines here (terminal middleware) 
         }

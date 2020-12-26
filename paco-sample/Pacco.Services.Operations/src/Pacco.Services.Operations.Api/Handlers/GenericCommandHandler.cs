@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using Convey.CQRS.Commands;
-using Convey.MessageBrokers;
+using MicroBootstrap.Commands;
+using MicroBootstrap.MessageBrokers;
 using Pacco.Services.Operations.Api.Infrastructure;
 using Pacco.Services.Operations.Api.Services;
 using Pacco.Services.Operations.Api.Types;
@@ -38,6 +38,7 @@ namespace Pacco.Services.Operations.Api.Handlers
             var name = string.IsNullOrWhiteSpace(context?.Name) ? command.GetType().Name : context.Name;
             var userId = context?.User?.Id;
             var state = messageProperties.GetSagaState() ?? OperationState.Pending;
+            //we can bypass storing in redis or any persistance mechanism and just send reviced payload to our push notification mechanism directly
             var (updated, operation) = await _operationsService.TrySetAsync(correlationId, userId, name, state);
             if (!updated)
             {

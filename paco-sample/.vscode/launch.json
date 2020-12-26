@@ -30,11 +30,12 @@
                 "ASPNETCORE_ENVIRONMENT": "local"
             }
         },
+        
         {
             "name": "Pacco.APIGateway.Ocelot",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build-ocelot",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/Pacco.APIGateway.Ocelot/src/Pacco.APIGateway.Ocelots/bin/Debug/netcoreapp3.1/Pacco.APIGateway.Ocelot.dll",
             "args": [],
@@ -54,11 +55,31 @@
             "name": "Pacco.Services.Availability",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build-availability",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/Pacco.Services.Availability/src/Pacco.Services.Availability.Api/bin/Debug/netcoreapp3.1/Pacco.Services.Availability.Api.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Pacco.Services.Availability/src/Pacco.Services.Availability.Api",
+            "console": "externalTerminal",
+            "stopAtEntry": false,
+            // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
+            // "serverReadyAction": {
+            //     "action": "openExternally",
+            //     "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            // },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "local"
+            }
+        },
+        {
+            "name": "Pacco.Services.Operations",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-operations",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/bin/Debug/netcoreapp3.1/Pacco.Services.Operations.Api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Pacco.Services.Operations/src/Pacco.Services.Operations.Api",
             "console": "externalTerminal",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser

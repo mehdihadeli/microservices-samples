@@ -9,6 +9,12 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="MicroBootstrap" Version="1.2.25-dev" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+    <ProjectReference Include="..\..\..\..\..\MicroBootstrap\src\MicroBootstrap\MicroBootstrap.csproj" />
+  </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)' == 'Release'">
+    <PackageReference Include="MicroBootstrap" Version="*-*" allowedVersions="*-*"/>
   </ItemGroup>
 </Project>

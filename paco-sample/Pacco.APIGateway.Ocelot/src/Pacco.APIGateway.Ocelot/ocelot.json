@@ -53,7 +53,14 @@
   "AsyncRoutes": {
     "Authenticate": false,
     "Routes": {
- 
+      "POST /availability/resources": {
+        "Exchange": "availability",
+        "RoutingKey": "add_resource"
+      },
+      "POST /availability/resources/reservations": {
+        "Exchange": "availability",
+        "RoutingKey": "reserve_resource"
+      }
     }
   }
 }

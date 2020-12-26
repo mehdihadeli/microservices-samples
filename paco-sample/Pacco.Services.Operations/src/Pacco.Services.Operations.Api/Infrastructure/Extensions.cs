@@ -1,29 +1,25 @@
 using System;
-using Convey;
-using Convey.Auth;
-using Convey.CQRS.Commands;
-using Convey.CQRS.Events;
-using Convey.CQRS.Queries;
-using Convey.Discovery.Consul;
-using Convey.Docs.Swagger;
-using Convey.HTTP;
-using Convey.LoadBalancing.Fabio;
-using Convey.MessageBrokers;
-using Convey.MessageBrokers.RabbitMQ;
-using Convey.Metrics.AppMetrics;
-using Convey.Persistence.MongoDB;
-using Convey.Persistence.Redis;
-using Convey.Security;
-using Convey.Tracing.Jaeger;
-using Convey.Tracing.Jaeger.RabbitMQ;
-using Convey.WebApi;
-using Convey.WebApi.Swagger;
+using MicroBootstrap;
+using MicroBootstrap.Authentication;
+using MicroBootstrap.Commands;
+using MicroBootstrap.Consul;
+using MicroBootstrap.Events;
+using MicroBootstrap.MessageBrokers;
+using MicroBootstrap.Queries;
+using MicroBootstrap.WebApi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Pacco.Services.Operations.Api.Handlers;
 using Pacco.Services.Operations.Api.Services;
 using Pacco.Services.Operations.Api.Types;
+using  MicroBootstrap.Fabio;
+using MicroBootstrap.MessageBrokers.RabbitMQ;
+using MicroBootstrap.Mongo;
+using MicroBootstrap.Redis;
+using MicroBootstrap.Jaeger;
+using  MicroBootstrap.Security;
+using MicroBootstrap.Swagger;
 
 namespace Pacco.Services.Operations.Api.Infrastructure
 {
@@ -46,19 +42,21 @@ namespace Pacco.Services.Operations.Api.Infrastructure
                 : JsonConvert.DeserializeObject<CorrelationContext>(payload);
         }
 
-        public static IConveyBuilder AddInfrastructure(this IConveyBuilder builder)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection serviceCollection)
         {
-            var requestsOptions = builder.GetOptions<RequestsOptions>("requests");
-            builder.Services.AddSingleton(requestsOptions);
-            builder.Services.AddTransient<ICommandHandler<ICommand>, GenericCommandHandler<ICommand>>()
+            var requestsOptions = serviceCollection.GetOptions<RequestsOptions>("requests");
+            serviceCollection.AddSingleton(requestsOptions);
+            serviceCollection
+                 //add our generic command and event handler for handling operation
+                .AddTransient<ICommandHandler<ICommand>, GenericCommandHandler<ICommand>>()
                 .AddTransient<IEventHandler<IEvent>, GenericEventHandler<IEvent>>()
                 .AddTransient<IEventHandler<IRejectedEvent>, GenericRejectedEventHandler<IRejectedEvent>>()
                 .AddTransient<IHubService, HubService>()
                 .AddTransient<IHubWrapper, HubWrapper>()
                 .AddSingleton<IOperationsService, OperationsService>();
-            builder.Services.AddGrpc();
+            serviceCollection.AddGrpc();
 
-            return builder
+            return serviceCollection
                 .AddErrorHandler<ExceptionToResponseMapper>()
                 .AddJwt()
                 .AddCommandHandlers()
@@ -67,45 +65,44 @@ namespace Pacco.Services.Operations.Api.Infrastructure
                 .AddHttpClient()
                 .AddConsul()
                 .AddFabio()
-                .AddRabbitMq(plugins: p => p.AddJaegerRabbitMqPlugin())
+                .AddRabbitMQ()
                 .AddMongo()
                 .AddRedis()
-                .AddMetrics()
+                //.AddMetrics()
                 .AddJaeger()
-                .AddRedis()
-                .AddSignalR()
-                .AddWebApiSwaggerDocs()
+                .AddInternalSignalR()
                 .AddSecurity();
         }
 
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
         {
             app.UseErrorHandler()
-                .UseSwaggerDocs()
-                .UseJaeger()
-                .UseConvey()
-                .UseMetrics()
+                //.UseSwaggerDocs()
+                //.UseJaeger()
+                //.UseMetrics()
                 .UseStaticFiles()
-                .UseRabbitMq()
-                .SubscribeMessages();
+                .UseRabbitMQ()
+                //we want to subscribe to all messages will be process asynchronously or the messages that we are interseted in to be notified when they got completed or rejected for any reason and
+                //we notify user through websocket or grpc 
+                .SubscribeMessages(); 
 
             return app;
         }
 
-        private static IConveyBuilder AddSignalR(this IConveyBuilder builder)
+        private static IServiceCollection AddInternalSignalR(this IServiceCollection serviceCollection)
         {
-            var options = builder.GetOptions<SignalrOptions>("signalR");
-            builder.Services.AddSingleton(options);
-            var signalR = builder.Services.AddSignalR();
+            var options = serviceCollection.GetOptions<SignalrOptions>("signalR");
+            serviceCollection.AddSingleton(options);
+            var signalR = serviceCollection.AddSignalR();
             if (!options.Backplane.Equals("redis", StringComparison.InvariantCultureIgnoreCase))
             {
-                return builder;
+                return serviceCollection;
             }
 
-            var redisOptions = builder.GetOptions<RedisOptions>("redis");
+            var redisOptions = serviceCollection.GetOptions<RedisOptions>("redis");
             signalR.AddRedis(redisOptions.ConnectionString);
 
-            return builder;
+            return serviceCollection;
         }
     }
 }

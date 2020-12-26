@@ -1,9 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Convey;
-using Convey.Secrets.Vault;
-using Convey.Logging;
-using Convey.Types;
-using Convey.WebApi;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,19 +8,22 @@ using Pacco.Services.Operations.Api.Hubs;
 using Pacco.Services.Operations.Api.Infrastructure;
 using Pacco.Services.Operations.Api.Queries;
 using Pacco.Services.Operations.Api.Services;
+using MicroBootstrap.WebApi;
+using MicroBootstrap;
+using MicroBootstrap.Logging;
+using MicroBootstrap.Vault;
 
 namespace Pacco.Services.Operations.Api
 {
     public class Program
     {
         public static async Task Main(string[] args)
-            => await WebHost.CreateDefaultBuilder(args)
-                .ConfigureServices(services => services
-                    .AddConvey()
-                    .AddWebApi()
-                    .AddInfrastructure()
-                    .Build())
-                .Configure(app => app
+        {
+            var webHostBuilder = WebHost.CreateDefaultBuilder(args)
+                 .ConfigureServices(services => services
+                     .AddWebApi()
+                     .AddInfrastructure())
+                 .Configure(app => app
                     .UseInfrastructure()
                     .UseEndpoints(endpoints => endpoints
                         .Get("", ctx => ctx.Response.WriteAsync(ctx.RequestServices.GetService<AppOptions>().Name))
@@ -38,17 +36,20 @@ namespace Pacco.Services.Operations.Api
                                 await ctx.Response.NotFound();
                                 return;
                             }
-
                             await ctx.Response.WriteJsonAsync(operation);
                         }))
                     .UseEndpoints(endpoints =>
-                    {
-                        endpoints.MapHub<PaccoHub>("/pacco");
-                        endpoints.MapGrpcService<GrpcServiceHost>();
-                    }))
-                .UseLogging()
-                .UseVault()
-                .Build()
-                .RunAsync();
+                     {
+                         endpoints.MapHub<PaccoHub>("/pacco");
+                         endpoints.MapGrpcService<GrpcServiceHost>();
+                     })
+
+                    )
+                     .UseLogging()
+                     //.UseVault()
+                     ;
+
+            await webHostBuilder.Build().RunAsync();
+        }
     }
 }

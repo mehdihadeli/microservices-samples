@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using Convey.CQRS.Events;
-using Convey.MessageBrokers;
+using MicroBootstrap.Events;
+using MicroBootstrap.MessageBrokers;
 using Pacco.Services.Operations.Api.Infrastructure;
 using Pacco.Services.Operations.Api.Services;
 using Pacco.Services.Operations.Api.Types;

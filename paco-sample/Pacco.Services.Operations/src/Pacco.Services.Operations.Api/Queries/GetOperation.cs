@@ -1,4 +1,4 @@
-using Convey.CQRS.Queries;
+using MicroBootstrap.Queries;
 using Pacco.Services.Operations.Api.DTO;
 
 namespace Pacco.Services.Operations.Api.Queries

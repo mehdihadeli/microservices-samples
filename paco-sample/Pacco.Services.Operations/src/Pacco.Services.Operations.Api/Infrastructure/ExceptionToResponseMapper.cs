@@ -1,6 +1,6 @@
 using System;
 using System.Net;
-using Convey.WebApi.Exceptions;
+using MicroBootstrap.WebApi.Exceptions;
 
 namespace Pacco.Services.Operations.Api.Infrastructure
 {

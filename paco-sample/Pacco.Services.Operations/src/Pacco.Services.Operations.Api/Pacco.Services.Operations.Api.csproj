@@ -5,30 +5,11 @@
     <RootNamespace>Pacco.Services.Operations.Api</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Convey" Version="0.4.*"/>
-    <PackageReference Include="Convey.Auth" Version="0.4.*"/>
-    <PackageReference Include="Convey.Secrets.Vault" Version="0.4.*"/>
-    <PackageReference Include="Convey.CQRS.Queries" Version="0.4.*"/>
-    <PackageReference Include="Convey.Discovery.Consul" Version="0.4.*"/>
-    <PackageReference Include="Convey.LoadBalancing.Fabio" Version="0.4.*"/>
-    <PackageReference Include="Convey.HTTP" Version="0.4.*"/>
-    <PackageReference Include="Convey.Logging" Version="0.4.*"/>
-    <PackageReference Include="Convey.MessageBrokers" Version="0.4.*"/>
-    <PackageReference Include="Convey.MessageBrokers.CQRS" Version="0.4.*"/>
-    <PackageReference Include="Convey.MessageBrokers.RabbitMQ" Version="0.4.*"/>
-    <PackageReference Include="Convey.Metrics.AppMetrics" Version="0.4.*"/>
-    <PackageReference Include="Convey.Persistence.MongoDB" Version="0.4.*"/>
-    <PackageReference Include="Convey.Persistence.Redis" Version="0.4.*"/>
-    <PackageReference Include="Convey.Tracing.Jaeger" Version="0.4.*"/>
-    <PackageReference Include="Convey.Tracing.Jaeger.RabbitMQ" Version="0.4.*"/>
-    <PackageReference Include="Convey.Security" Version="0.4.*"/>
-    <PackageReference Include="Convey.WebApi.CQRS" Version="0.4.*"/>
     <PackageReference Include="Google.Protobuf" Version="3.11.4"/>
     <PackageReference Include="Grpc.AspNetCore" Version="2.28.0"/>
     <PackageReference Include="Grpc.Tools" Version="2.28.1"/>
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0"/>
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Redis" Version="1.1.5"/>
-    <PackageReference Include="Convey.WebApi.Swagger" Version="0.4.*"/>
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.2"/>
   </ItemGroup>
   <ItemGroup>
@@ -39,5 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="certs\**" CopyToPublishDirectory="Always"/>
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+    <ProjectReference Include="..\..\..\..\..\MicroBootstrap\src\MicroBootstrap\MicroBootstrap.csproj" />
+  </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)' == 'Release'">
+    <PackageReference Include="MicroBootstrap" Version="*-*" allowedVersions="*-*"/>
   </ItemGroup>
 </Project>
