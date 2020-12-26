@@ -1,0 +1,8 @@
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="true" type="CompoundRunConfigurationType">
+    <toRun name="Pacco.APIGateway.Ocelot" type="LaunchSettings" />
+    <toRun name="Pacco.Services.Availability.Api: Pacco.Services.Availability" type="LaunchSettings" />
+    <toRun name="Pacco.Services.Operations.Api: Pacco.Services.Operations" type="LaunchSettings" />
+    <method v="2" />
+  </configuration>
+</component>
