@@ -13,11 +13,19 @@ namespace Pacco.Services.Operations.Api.Services
         {
             _hubContext = hubContext;
         }
+        
+        /// <param name="method">The name of the method to invoke.</param>
+        /// <param name="data">argument for this method</param>
+        public async Task PublishToUserAsync(string userId, string method, object data)
+        {
+            if (string.IsNullOrEmpty(userId))
+                await PublishToAllAsync(method, data);
+            await _hubContext.Clients.Group(userId.ToUserGroup()).SendAsync(method, data);
+        }
 
-        public async Task PublishToUserAsync(string userId, string message, object data)
-            => await _hubContext.Clients.Group(userId.ToUserGroup()).SendAsync(message, data);
-
-        public async Task PublishToAllAsync(string message, object data)
-            => await _hubContext.Clients.All.SendAsync(message, data);
+        /// <param name="method">The name of the method to invoke.</param>
+        /// <param name="data">argument for this method</param>
+        public async Task PublishToAllAsync(string method, object data)
+            => await _hubContext.Clients.All.SendAsync(method, data);
     }
 }

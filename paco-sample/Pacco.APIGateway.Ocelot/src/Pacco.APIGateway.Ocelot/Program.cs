@@ -43,7 +43,7 @@ namespace Pacco.APIGateway.Ocelot
 
     //-- informing end-user about operation -- : we request comes to api then api sends this message to message broker such as CreateOrder or AddResource command, the we receive this correlationId or requestId that is a unique identifier that we can always send to the gateway to
     //give status of on going request maybe we have a long time request and get the idea what's going one. this is correlationId that we generated  and immediately we return this and Api gateway returns 202 status or accepted after we published message to the message broker 
-   
+
     //we have another service that called operation service this is some sort of infrastructural service could be a background service which will also subscribe to all of the messages that we want to trap that are being process asychrosuly ans will set internal state or internal
     //database with information about this request so if there is a command like CreateOrder it will say I received a command for this correlationId and maybe we set status of this command to pending or new then the end user ask with a HttpGet basedon correlationId but we can also
     //use websocket grpc and some server push technology and send to user information about on going request and then once we received OrderCreated event or OrderRejected event from order service and operation service subscribe to this same event and based on same correlationId
@@ -55,6 +55,8 @@ namespace Pacco.APIGateway.Ocelot
     //we set corrlationId in start point that is our api gateway side and in the service level we need to fetch this correlationId from message and pass it further so when we publish message again the correlationId will be pass further 
 
     //websocket connection between user and operation service doesn't through api gateway but it can through api gateway it is up to us
+
+    //when we talk about integration we think about events like async and lossly couple integrations and when we think about communication we usually think about point to point 
     public class Program
     {
         public static Task Main(string[] args) => CreateHostBuilder(args).Build().RunAsync();
@@ -101,7 +103,7 @@ namespace Pacco.APIGateway.Ocelot
 
                         using var provider = services.BuildServiceProvider();
                         var configuration = provider.GetService<IConfiguration>();
-                        
+
                         // we defined our async endpoints in our AsyncRoutes section of ocelot.json
                         services.Configure<AsyncRoutesOptions>(configuration.GetSection("AsyncRoutes"));
                         //use to define our endpoints that we don't want to protect by token, it will handle by AnonymousRouteValidator and we enforce our endpoint in ocelot setting to use token with AuthenticationOptions
@@ -125,12 +127,16 @@ namespace Pacco.APIGateway.Ocelot
                         });
 
                         //we define this two middleware before running ocelot middleware
-                        
-                        //so if it is async endpoint call, we don't continue for using ocelot middleware with calling next(context) method and we will terminate middleware pipelines here (terminal middleware) 
+
+                        //so if it is async endpoint call, we don't continue for using ocelot middleware with calling next(context) method and we will terminate middleware pipelines here (terminal middleware)
+
+                        //this middleware run before ocelot middleware
+
+                        //so if it is async endpoint called, we don't continue for using ocelot middleware with calling next(context) method and we will terminate middleware pipelines here (terminal middleware) 
                         app.UseMiddleware<AsyncRoutesMiddleware>();
                         app.UseMiddleware<ResourceIdGeneratorMiddleware>();
 
-                        app.UseOcelot(GetOcelotConfiguration()).GetAwaiter().GetResult();
+                        app.UseOcelot(GetOcelotConfiguration()).GetAwaiter().GetResult(); // ocelot itself only use sync web api calls and AsyncRoutesMiddleware will use for async api calls 
                     })
                     .UseLogging()
                     //.UseVault()
@@ -142,30 +148,38 @@ namespace Pacco.APIGateway.Ocelot
             {
                 AuthenticationMiddleware = async (context, next) =>
                 {
-                    await next.Invoke();
-                    return;
-                    // if (!context.DownstreamReRoute.IsAuthenticated)
-                    // {
-                    //     await next.Invoke();
-                    //     return;
-                    // }
+                    if (!context.DownstreamReRoute.IsAuthenticated)
+                    {
+                        await next.Invoke();
+                        return;
+                    }
 
-                    // if (context.HttpContext.RequestServices.GetRequiredService<IAnonymousRouteValidator>()
-                    //     .HasAccess(context.HttpContext.Request.Path))
-                    // {
-                    //     await next.Invoke();
-                    //     return;
-                    // }
+                    if (context.HttpContext.RequestServices.GetRequiredService<IAnonymousRouteValidator>()
+                        .HasAccess(context.HttpContext.Request.Path))
+                    {
+                        await next.Invoke();
+                        return;
+                    }
 
-                    // var authenticateResult = await context.HttpContext.AuthenticateAsync();
-                    // if (authenticateResult.Succeeded)
-                    // {
-                    //     context.HttpContext.User = authenticateResult.Principal;
-                    //     await next.Invoke();
-                    //     return;
-                    // }
+                    //already authenticated with authentication middleware
+                    if (context.HttpContext.User != null)
+                    {
+                        await next.Invoke();
+                        return;
+                    }
 
-                    // context.Errors.Add(new UnauthenticatedError("Unauthenticated"));
+                    //authenticate with saved token after signing
+                    //we can grab all of the authentication properties from our authentication cookie
+                    //https://github.com/jacobslusser/JwtAuthRenewWebApi/blob/master/docs/Validating-JWT.md
+                    var authenticateResult = await context.HttpContext.AuthenticateAsync();
+                    if (authenticateResult.Succeeded)
+                    {
+                        context.HttpContext.User = authenticateResult.Principal;
+                        await next.Invoke();
+                        return;
+                    }
+
+                    context.Errors.Add(new UnauthenticatedError("Unauthenticated"));
                 }
             };
     }

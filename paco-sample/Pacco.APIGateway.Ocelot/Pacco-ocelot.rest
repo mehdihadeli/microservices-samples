@@ -5,7 +5,7 @@ POST {{api}}/identity/sign-up
 Content-Type: application/json
 
 {
-  "email": "pacco-user1@mailinator.com",
+  "email": "pacco-user2@mailinator.com",
   "password": "secret",
   "role": "user"
 }
@@ -16,15 +16,26 @@ POST {{api}}/identity/sign-in
 Content-Type: application/json
 
 {
-  "email": "pacco-user1@mailinator.com",
+  "email": "pacco-user2@mailinator.com",
   "password": "secret"
 }
 
-
 ###
+
+
+
 @accessToken = {{sign_in.response.body.$.accessToken}}
 GET {{api}}/identity/me
 Authorization: Bearer {{accessToken}}
+
+###
+
+POST {{api}}/identity/access-tokens/revoke
+authorization: Bearer {{accessToken}}
+content-type: application/json
+
+{
+}
 
 ###
 GET {{api}}/availability/resources
@@ -37,11 +48,11 @@ Content-Type: application/json
 }
 
 ###
-@resourceId = 00000000-0000-0000-0000-000000000063
+@resourceId = 00000000-0000-0000-0000-000000000067
 @tags = ["vehicle", "armor"]
 
 POST {{api}}/availability/resources
-# Authorization: Bearer {{accessToken}}
+Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {

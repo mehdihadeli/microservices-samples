@@ -20,6 +20,22 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "build-customers",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "build",
+                "${workspaceFolder}/Pacco.Services.Customers/src/Pacco.Services.Customers.Api",
+                "-c",
+                "Debug"
+              ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "build-ocelot",
             "command": "dotnet",
             "type": "shell",
@@ -40,7 +56,7 @@
             "command": "dotnet",
             "type": "shell",
             "args": [
-                "build-operations",
+                "build",
                 "${workspaceFolder}/Pacco.Services.Operations/src/Pacco.Services.Operations.Api",
                 "-c",
                 "Debug"

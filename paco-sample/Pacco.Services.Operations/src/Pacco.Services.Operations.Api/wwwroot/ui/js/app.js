@@ -18,6 +18,7 @@
         appendMessage("Connecting to Pacco Hub...");
         connection.start()
             .then(() => {
+            //calling our signalr server side hub initializeAsync method
             connection.invoke('initializeAsync', $jwt.value);
         })
         .catch(err => appendMessage(err));

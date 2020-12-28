@@ -75,7 +75,7 @@ namespace Pacco.Services.Customers.Infrastructure
                 .AddJaeger()
                 .AddHandlersLogging()
                 .AddMongoRepository<CustomerDocument, Guid>("customers")
-                .AddWebApiSwaggerDocs()
+                //.AddWebApiSwaggerDocs()
                 .AddCertificateAuthentication()
                 .AddSecurity();
         }
@@ -83,7 +83,7 @@ namespace Pacco.Services.Customers.Infrastructure
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
         {
             app.UseErrorHandler()
-                .UseSwaggerDocs()
+                //.UseSwaggerDocs()
                 .UseJaeger()
                 .UseConvey()
                 .UsePublicContracts<ContractAttribute>()

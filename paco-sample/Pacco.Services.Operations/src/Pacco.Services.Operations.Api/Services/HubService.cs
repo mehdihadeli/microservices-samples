@@ -14,7 +14,8 @@ namespace Pacco.Services.Operations.Api.Services
 
         public async Task PublishOperationPendingAsync(OperationDto operation)
             => await _hubContextWrapper.PublishToUserAsync(operation.UserId,
-                "operation_pending",
+                "operation_pending",//method to call in client side
+                //parameter to pass this method
                 new
                 {
                     id = operation.Id,
@@ -24,7 +25,8 @@ namespace Pacco.Services.Operations.Api.Services
 
         public async Task PublishOperationCompletedAsync(OperationDto operation)
             => await _hubContextWrapper.PublishToUserAsync(operation.UserId,
-                "operation_completed",
+                "operation_completed", //method to call in client side
+                //parameter to pass this method
                 new
                 {
                     id = operation.Id,
@@ -34,8 +36,9 @@ namespace Pacco.Services.Operations.Api.Services
 
         public async Task PublishOperationRejectedAsync(OperationDto operation)
             => await _hubContextWrapper.PublishToUserAsync(operation.UserId,
-                "operation_rejected",
-                new
+                "operation_rejected",//method to call in client side
+                //parameter to pass this method
+                new 
                 {
                     id = operation.Id,
                     name = operation.Name,

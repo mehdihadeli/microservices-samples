@@ -19,6 +19,7 @@ namespace Pacco.Services.Operations.Api.Services
             _options = options;
         }
 
+        //this event can be subscribe by other service, such as grpc service (GrpcServiceHost) subscribe to this event for streaming the happened event
         public event EventHandler<OperationUpdatedEventArgs> OperationUpdated;
 
         public async Task<OperationDto> GetAsync(string id)

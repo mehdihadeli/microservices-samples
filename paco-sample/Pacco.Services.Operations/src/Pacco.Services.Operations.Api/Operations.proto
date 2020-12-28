@@ -2,8 +2,19 @@ syntax = "proto3";
 
 package Services.Operations;
 
+//https://docs.microsoft.com/en-us/aspnet/core/grpc/services?view=aspnetcore-5.0
+//https://docs.microsoft.com/en-us/aspnet/core/grpc/protobuf?view=aspnetcore-5.0
+//https://docs.microsoft.com/en-us/aspnet/core/grpc/client?view=aspnetcore-5.0
+//https://www.stevejgordon.co.uk/server-streaming-with-grpc-in-asp-dotnet-core
+//https://dotnetcorecentral.com/blog/streaming-and-authentication-in-grpc/
+
+//https://blog.miguelbernard.com/asynchronous-streams/
+//https://dotnetcorecentral.com/blog/asynchronous-streams-in-c-8-net-core-3-0/
+
 service GrpcOperationsService {
+    //simple request and response
     rpc GetOperation (GetOperationRequest) returns (GetOperationResponse) {}
+    //we can use streaming with one way and two way like wcf duplex 
     rpc SubscribeOperations (Empty) returns (stream GetOperationResponse) {}
 }
 

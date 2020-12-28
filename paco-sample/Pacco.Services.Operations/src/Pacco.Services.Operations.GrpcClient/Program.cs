@@ -30,7 +30,7 @@ namespace Pacco.Services.Operations.GrpcClient
         static async Task Main(string[] args)
         {
             var address = GetAddress(args);
-            
+
             // Only for the local development purposes.
             var httpClientHandler = new HttpClientHandler
             {
@@ -38,7 +38,7 @@ namespace Pacco.Services.Operations.GrpcClient
                     HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
             };
             var httpClient = new HttpClient(httpClientHandler);
-            
+
             var channel = GrpcChannel.ForAddress(address, new GrpcChannelOptions
             {
                 HttpClient = httpClient
@@ -71,7 +71,7 @@ namespace Pacco.Services.Operations.GrpcClient
             {
                 port = 50050;
             }
-            
+
             return $"https://{host}:{port}";
         }
 
@@ -132,16 +132,23 @@ namespace Pacco.Services.Operations.GrpcClient
             DisplayOperation(response);
         }
 
+        //https://www.stevejgordon.co.uk/server-streaming-with-grpc-in-asp-dotnet-core
         private static async Task SubscribeOperationsStreamAsync()
         {
             Console.WriteLine("Subscribing to the operations stream...");
             using (var stream = _client.SubscribeOperations(new Empty()))
             {
-                while (await stream.ResponseStream.MoveNext())
+                await foreach (var weatherData in stream.ResponseStream.ReadAllAsync())  //The loop will awaken as messages are received
                 {
                     Console.WriteLine("* Received the data from the operations stream *");
                     DisplayOperation(stream.ResponseStream.Current);
                 }
+
+                // while (await stream.ResponseStream.MoveNext())
+                // {
+                //     Console.WriteLine("* Received the data from the operations stream *");
+                //     DisplayOperation(stream.ResponseStream.Current);
+                // }
             }
         }
 

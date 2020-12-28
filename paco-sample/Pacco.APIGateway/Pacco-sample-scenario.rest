@@ -5,7 +5,7 @@ POST {{api}}/identity/sign-up
 Content-Type: application/json
 
 {
-  "email": "pacco-user1@mailinator.com",
+  "email": "pacco-user2@mailinator.com",
   "password": "secret",
   "role": "user"
 }
@@ -16,7 +16,7 @@ POST {{api}}/identity/sign-in
 Content-Type: application/json
 
 {
-  "email": "pacco-user1@mailinator.com",
+  "email": "pacco-user2@mailinator.com",
   "password": "secret"
 }
 
@@ -121,7 +121,7 @@ Authorization: Bearer {{accessToken}}
 Content-Type: application/json
 
 {
-  "resourceId": "{{resourceId}}",
+  "resourceId": "00000000-0000-0000-0000-000000000062",
   "tags": {{tags}}
 }
 

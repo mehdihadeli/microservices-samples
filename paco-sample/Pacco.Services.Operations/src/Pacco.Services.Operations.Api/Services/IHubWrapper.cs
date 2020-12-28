@@ -4,7 +4,12 @@ namespace Pacco.Services.Operations.Api.Services
 {
     public interface IHubWrapper
     {
-        Task PublishToUserAsync(string userId, string message, object data);
-        Task PublishToAllAsync(string message, object data);
+        /// <param name="method">The name of the method to invoke.</param>
+        /// <param name="data">argument for this method</param>
+        Task PublishToUserAsync(string userId, string method, object data);
+        
+        /// <param name="method">The name of the method to invoke.</param>
+        /// <param name="data">argument for this method</param>
+        Task PublishToAllAsync(string method, object data);
     }
 }

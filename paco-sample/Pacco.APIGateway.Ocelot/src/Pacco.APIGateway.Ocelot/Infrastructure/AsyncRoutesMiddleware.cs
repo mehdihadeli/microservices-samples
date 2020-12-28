@@ -46,12 +46,12 @@ namespace Pacco.APIGateway.Ocelot.Infrastructure
             }
 
             var key = GetKey(context);
-            if (!_routes.TryGetValue(key, out var route))
+            if (!_routes.TryGetValue(key, out var route)) //read route from ocelot setting with specific key that get from path
             {
                 await next(context);
                 return;
             }
-
+            //_authenticate read from Authenticate property of AsyncRoutes in ocelot.json
             if ((_authenticate && route.Authenticate != false || route.Authenticate == true) &&
                 !_anonymousRouteValidator.HasAccess(context.Request.Path))
             {

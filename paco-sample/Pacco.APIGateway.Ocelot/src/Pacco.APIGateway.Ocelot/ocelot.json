@@ -47,19 +47,22 @@
   "AnonymousRoutes": {
     "Routes": [
       "/identity/sign-in",
-      "/identity/sign-up"
+      "/identity/sign-up",
+      "/identity/access-tokens/revoke"
     ]
   },
   "AsyncRoutes": {
-    "Authenticate": false,
+    "Authenticate": true,
     "Routes": {
       "POST /availability/resources": {
         "Exchange": "availability",
-        "RoutingKey": "add_resource"
+        "RoutingKey": "add_resource",
+        "Authenticate": false
       },
       "POST /availability/resources/reservations": {
         "Exchange": "availability",
-        "RoutingKey": "reserve_resource"
+        "RoutingKey": "reserve_resource",
+        "Authenticate": false
       }
     }
   }

@@ -40,7 +40,7 @@ namespace Pacco.Services.Customers.Api
                         .Put<ChangeCustomerState>("customers/{customerId}/state/{state}",
                             afterDispatch: (cmd, ctx) => ctx.Response.NoContent())))
                 .UseLogging()
-                .UseVault()
+                //.UseVault()
                 .Build()
                 .RunAsync();
     }

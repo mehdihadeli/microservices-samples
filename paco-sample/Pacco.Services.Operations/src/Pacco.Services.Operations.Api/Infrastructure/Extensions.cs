@@ -28,6 +28,11 @@ namespace Pacco.Services.Operations.Api.Infrastructure
         public static string ToUserGroup(this Guid userId) => userId.ToString("N").ToUserGroup();
         public static string ToUserGroup(this string userId) => $"users:{userId}";
 
+        /// <summary>
+        /// using passed correlation context and deserialize it to our custom context
+        /// </summary>
+        /// <param name="accessor"></param>
+        /// <returns></returns>
         public static CorrelationContext GetCorrelationContext(this ICorrelationContextAccessor accessor)
         {
             if (accessor.CorrelationContext is null)
@@ -94,13 +99,16 @@ namespace Pacco.Services.Operations.Api.Infrastructure
             var options = serviceCollection.GetOptions<SignalrOptions>("signalR");
             serviceCollection.AddSingleton(options);
             var signalR = serviceCollection.AddSignalR();
-            if (!options.Backplane.Equals("redis", StringComparison.InvariantCultureIgnoreCase))
+            if (!options.Backplane.Equals("redis", StringComparison.InvariantCultureIgnoreCase)) 
             {
                 return serviceCollection;
             }
 
             var redisOptions = serviceCollection.GetOptions<RedisOptions>("redis");
-            signalR.AddRedis(redisOptions.ConnectionString);
+            //https://www.tugberkugurlu.com/archive/scaling-out-signalr-with-a-redis-backplane-and-testing-it-with-iis-express
+            //https://codeopinion.com/practical-asp-net-core-signalr-scaling/
+            //https://docs.microsoft.com/en-us/aspnet/core/signalr/scale?view=aspnetcore-5.0
+            signalR.AddRedis(redisOptions.ConnectionString); //signalR backplane with redis.
 
             return serviceCollection;
         }
