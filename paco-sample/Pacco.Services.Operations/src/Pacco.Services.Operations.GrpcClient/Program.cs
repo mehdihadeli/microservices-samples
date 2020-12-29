@@ -138,7 +138,7 @@ namespace Pacco.Services.Operations.GrpcClient
             Console.WriteLine("Subscribing to the operations stream...");
             using (var stream = _client.SubscribeOperations(new Empty()))
             {
-                await foreach (var weatherData in stream.ResponseStream.ReadAllAsync())  //The loop will awaken as messages are received
+                await foreach (var weatherData in stream.ResponseStream.ReadAllAsync())  //The loop will awaken as messages are received - using IAsyncStreamReader
                 {
                     Console.WriteLine("* Received the data from the operations stream *");
                     DisplayOperation(stream.ResponseStream.Current);

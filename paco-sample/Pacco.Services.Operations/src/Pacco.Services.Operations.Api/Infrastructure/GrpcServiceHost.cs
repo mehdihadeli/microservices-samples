@@ -32,7 +32,9 @@ namespace Pacco.Services.Operations.Api.Infrastructure
 
             return Map(await _operationsService.GetAsync(request.Id));
         }
-
+        
+        // this operation will be start in new thread when this method call by client and adding operation to _operations will do by another theread that comes
+        // from TrySetAsync of OperationService as part of a execution life cycle a event handler or command handler
         public override async Task SubscribeOperations(Empty request,
             IServerStreamWriter<GetOperationResponse> responseStream, ServerCallContext context)
         {
