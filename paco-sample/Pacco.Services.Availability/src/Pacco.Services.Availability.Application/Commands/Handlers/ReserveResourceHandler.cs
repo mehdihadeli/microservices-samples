@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using MicroBootstrap.Commands;
 using Pacco.Services.Availability.Application.Exceptions;
 using Pacco.Services.Availability.Application.Services;
+using Pacco.Services.Availability.Application.Services.Clients;
 using Pacco.Services.Availability.Core.Repositories;
 using Pacco.Services.Availability.Core.ValueObjects;
 
@@ -11,11 +12,15 @@ namespace Pacco.Services.Availability.Application.Commands.Handlers
     {
         private readonly IResourcesRepository _repository;
         private readonly IEventProcessor _eventProcessor;
+        private readonly ICustomerServiceClient _customersServiceClient;
 
-        public ReserveResourceHandler(IResourcesRepository repository, IEventProcessor eventProcessor)
+        // here we need to inject HttpClienFactory but if we do it in application level but just like we did for message broker we don't want explicitly say we rely on this message broker or this database so we should rather use some sort of abstraction
+        // so in application we create a port ICustomerServiceClient in services/clients folder  
+        public ReserveResourceHandler(IResourcesRepository repository, IEventProcessor eventProcessor, ICustomerServiceClient customersServiceClient)
         {
-            _repository = repository;
+            this._repository = repository;
             this._eventProcessor = eventProcessor;
+            this._customersServiceClient = customersServiceClient;
         }
 
         // handler is nothing more orchestration of our domain and domain logic and external world (Application Service)
@@ -32,6 +37,21 @@ namespace Pacco.Services.Availability.Application.Commands.Handlers
                 // our exception will handle by our exception middleware and ExceptionToResponseMapper
                 throw new ResourceNotFoundException(command.ResourceId);
             }
+            //we ask customer state here sonorously because we want to immediate consistency rather that using event and eventually consistency
+            
+            //we certain int his moment we have latest data for customer service and we can continue reserve reservation.
+            var customerState = await _customersServiceClient.GetStateAsync(command.CustomerId);
+            if (customerState is null)
+            {
+                //application level exception
+                throw new CustomerNotFoundException(command.CustomerId);
+            }
+
+            if (customerState.IsValid == false)
+            {
+                throw new InvalidCustomerStateException(command.CustomerId, customerState.State);
+            }
+
             var reservation = new Reservation(command.DateTime, command.Priority);
             resource.AddReservation(reservation);
 
@@ -53,13 +73,13 @@ namespace Pacco.Services.Availability.Application.Commands.Handlers
             //1)delivering at most once (fire and forget) - problem: message might be lost we don't care about it: it is like a fire and forget, we publish some message it might be eventually processed or not, but we don't care and ew don't track of this message and only thing we do is
             //  publishing this message once and we don't care about it processed or not. we will received a OrderCreated event on DeliveryService but somthing go wrong in that service and it doesn't send ACK but message
             //  broker doesn't care, it send us a message only once and doesn't care whethere we fail or proceed. but for most of scenario's we don't want to lose message and we care about processing theme and it is not what we want so we switch to at least one delivery
-            
+
             //https://www.cloudcomputingpatterns.org/at_least_once_delivery/
             //2)at least one delivery - problem: message might be sent again: it is a better approach, idea is based on ACK. in happy path we will simply process it once if not then will try to process the same message again and again and here this is where we use idempotent. so when our message
             //are idempotant is pretty cool when it comes to distributed system. at least one delivery means having idempotant of a message or having idempotant of processing a message make it pretty easy with at least once delivery because, when we process message again
             //let say 10 time the result stay same. sometimes it is possible update and change my name or address more than once or delete because it is idempotant naturally but it's not always the case or any thing that can't be idempotant by nature like tansfering money or calling
             //some external system and we have no control out there and we would like to call them once and we can't do this idempotantly. 
-            
+
             //3) so we need somehow provide this exactly one proceeding and handle the problem with previous approach and most important part of a message is messageId and we want unique identifier for each message, so we want exactly one processing and the way is
             //relying on database transaction to overcom thi issue.
 
@@ -93,7 +113,7 @@ namespace Pacco.Services.Availability.Application.Commands.Handlers
             await _repository.UpdateAsync(resource); //database
 
             //1)we don't want publish directly to message broker we want save this event into OutBox collection and of course. we handle this in MessageBroker class with using IMessageOutbox class
-            
+
             //2)we want to verification of unique messageId somewhere. before we invoke handler we like to verify whether we can invoke this handler or no
             //by checking this message is unique or not. we need some middleware before hit our handler. for example in rabbitmq BusSubscriber before do invocation handle(serviceProvider,message,messagecontext) we like to verify before call handle but if we can't
             //change internal of some library we could put a decorator on top of it. 

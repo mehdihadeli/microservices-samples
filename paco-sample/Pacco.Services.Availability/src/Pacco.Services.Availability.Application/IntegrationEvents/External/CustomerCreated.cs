@@ -20,6 +20,7 @@ namespace Pacco.Services.Availability.Application.IntegrationEvents.External
     {
         public Guid CustomerId { get; }
 
+        public CustomerState State { get; set; }
         public CustomerCreated(Guid customerId)
             => CustomerId = customerId;
     }

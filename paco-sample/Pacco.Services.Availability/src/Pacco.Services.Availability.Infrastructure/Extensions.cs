@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using MicroBootstrap;
 using Pacco.Services.Availability.Application.Commands;
 using Pacco.Services.Availability.Core.Repositories;
@@ -22,8 +21,9 @@ using Pacco.Services.Availability.Infrastructure.Decorators;
 using MicroBootstrap.Events;
 using MicroBootstrap.MessageBrokers.Outbox.Mongo;
 using MicroBootstrap.MessageBrokers.Outbox;
-using Pacco.Services.Availability.Application.IntegrationEvents;
-using Pacco.Services.Availability.Core.DomainEvents;
+using MicroBootstrap.HTTP;
+using Pacco.Services.Availability.Infrastructure.Services.Clients;
+using Pacco.Services.Availability.Application.Services.Clients;
 
 namespace Pacco.Services.Availability.Infrastructure
 {
@@ -37,6 +37,7 @@ namespace Pacco.Services.Availability.Infrastructure
             services.AddTransient<IEventProcessor, EventProcessor>();
             services.TryDecorate(typeof(ICommandHandler<>), typeof(OutboxCommandHandlerDecorator<>));
             services.TryDecorate(typeof(IEventHandler<>), typeof(OutboxEventHandlerDecorator<>));
+            services.AddTransient<ICustomerServiceClient, CustomerServiceClient>();
 
             return services
                     .AddInitializers()
@@ -44,8 +45,9 @@ namespace Pacco.Services.Availability.Infrastructure
                     .AddQueryHandlers() //we put query part in infrastructure layer instead of application layer
                     .AddInMemoryQueryDispatcher()
                     .AddMongo()
-                    .AddMongoRepository<ResourceDocument, Guid>("resources")
+                    .AddMongoRepository<ResourceDocument, System.Guid>("resources")
                     .AddRabbitMQ()
+                    .AddHttpClient(clientName: "availability") //our abstraction top of httpclient
                     .AddMessageOutbox(o => o.AddMongo())
                     .AddExceptionToMessageMapper<ExceptionToMessageMapper>(); //it only trigger in async way with rabbit for the web api make sense to throw or publish this rejected events maybe doesn't up to us
         }

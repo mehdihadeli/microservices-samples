@@ -1,6 +1,6 @@
 @url = http://localhost:5001
 @resourceId = 00000000-0000-0000-0000-000000000022
-@customerId = 00000000-0000-0000-0000-000000000000
+@customerId = c8ce5e16-ef93-48c3-9876-0e0efc981a88
 @dateTime = 2020-01-10
 @tags = ["vehicle", "armor"]
 
