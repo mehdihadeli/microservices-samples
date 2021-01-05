@@ -19,7 +19,7 @@ consul itself can be setup either as a `client side` service discover or `server
 
 we use consul in our docker and we can reach it in `http://localhost:8500`, now we want to plugin our service in service registry. we can use service discovery feature to talk between services. first we need register customer microservice and in appsettings of customer service we have some setting for consul.
 
-``` json
+``` 
   "consul": {
     "enabled": true,
     "url": "http://localhost:8500",
@@ -41,7 +41,9 @@ we use consul in our docker and we can reach it in `http://localhost:8500`, now 
   },
 ```
 [Accessing Linux networking apps from Windows (localhost)](https://docs.microsoft.com/en-us/windows/wsl/compare-versions#accessing-linux-networking-apps-from-windows-localhost)
+
 [Accessing Windows networking apps from Linux (host IP)](https://docs.microsoft.com/en-us/windows/wsl/compare-versions#accessing-windows-networking-apps-from-linux-host-ip)
+
 [fix-wsl2-dns-resolution](https://gist.github.com/coltenkrauter/608cfe02319ce60facd76373249b8ca6)
 
 `http://localhost:8500` in `url` section is api address of consul that hosted on docker and it `exposed` on docker host on the port `8500` and address `127.0.0.1` address because of its docker network type that is `host` for our container in docker compose [host-infrastructure.yml](../Pacco/compose/host-infrastructure.yml) in linux without docker desktop but if we use windows and docker desktop and bridge network for our docker-compose [infrastructure.yml](../Pacco/compose/infrastructure.yml) for docker host address we should use `host.docker.internal`
@@ -61,10 +63,15 @@ cat /etc/hosts
 `customers-service` in `service` section is dns name of group name of our service for multiple instance and `address` and `port` are host and port address of our service, this address should be resolve on the consul docker container so we need to use a host address for docker here because our consul container can talk with our application that is on host out of docker by using `127.0.0.1` because we use host mode in docker for our containers.
 
 [Using Consul for Service Discovery with ASP.NET Core](https://cecilphillip.com/using-consul-for-service-discovery-with-asp-net-core/)
+
 [Using Consul for Health Checks with ASP.NET Core](https://cecilphillip.com/using-consul-for-health-checks-with-asp-net-core/)
+
 [Looking At ASP.NET Core's IApplicationLifetime](https://khalidabuhakmeh.silvrback.com/looking-at-asp-net-cores-iapplicationlifetime)
+
 [ASP.NET Core WebSockets and Application Lifetime Shutdown Events](https://weblog.west-wind.com/posts/2020/May/28/ASPNET-Core-WebSockets-and-Application-Lifetime-Shutdown-Events)
+
 [ASP.NET Core In Production - Graceful Shutdown And Reacting To Aborted Requests](https://www.thinktecture.com/en/asp-net/aspnet-core-in-production-graceful-shutdown-and-reacting-to-aborted-requests/)
+
 [IHostLifetime](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-5.0#ihostlifetime)
 
 services will be register in our consul and we can see these services in `http://localhost:8500` and inner our `customer-service` we can see all of the `instances` of `this services` and we can open each instance we can see defined `health check` and `tags` for our service instance. consul itself don't need health check but it is good for us because once we do a graceful shut down and do something we expect in .net core (ctr+c or send stop signal to host) we could `deregister` ourself from the consul registry but when we have a unexpected shutdown (like crash or kill app) in this case we have no option for `deregister` from consul and `health check` is only way from consul perspective I'm not access to this instance so I would simply `deregister` this, so potential consumer no longer use this instance.
@@ -115,7 +122,7 @@ we need to use web api to get list of instances for service and then we make a c
 
 in `CustomerServiceClient` lets look at or local.appsettings.json and config for `httpClient`
 
-``` json
+``` 
   "httpClient": {
     "type": "consul", //for create a custom  httpClient that can resolve by IHttpClient 
     "retries": 3,
