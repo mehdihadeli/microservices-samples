@@ -2,7 +2,6 @@ using System;
 using MicroBootstrap;
 using MicroBootstrap.Authentication;
 using MicroBootstrap.Commands;
-using MicroBootstrap.Consul;
 using MicroBootstrap.Events;
 using MicroBootstrap.MessageBrokers;
 using MicroBootstrap.Queries;
@@ -13,13 +12,14 @@ using Newtonsoft.Json;
 using Pacco.Services.Operations.Api.Handlers;
 using Pacco.Services.Operations.Api.Services;
 using Pacco.Services.Operations.Api.Types;
-using  MicroBootstrap.Fabio;
 using MicroBootstrap.MessageBrokers.RabbitMQ;
 using MicroBootstrap.Mongo;
 using MicroBootstrap.Redis;
 using MicroBootstrap.Jaeger;
 using  MicroBootstrap.Security;
 using MicroBootstrap.Swagger;
+using MicroBootstrap.Discovery.Consul.Consul;
+using MicroBootstrap.LoadBalancer.Fabio;
 
 namespace Pacco.Services.Operations.Api.Infrastructure
 {

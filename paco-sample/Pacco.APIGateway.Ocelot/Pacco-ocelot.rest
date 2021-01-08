@@ -48,7 +48,7 @@ Content-Type: application/json
 }
 
 ###
-@resourceId = 00000000-0000-0000-0000-000000000069
+@resourceId = 00000000-0000-0000-0000-000000000001
 @tags = ["vehicle", "armor"]
 
 POST {{api}}/availability/resources

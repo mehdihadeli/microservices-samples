@@ -1,5 +1,9 @@
 @url = http://localhost:5002
-@customerId = 94e590c4-ff31-43d3-a675-2e2252edcf9d
+
+#12. Integration via events - subscriber 
+#we can pass our created userId as customerId to complete our registration - userId and customerId are the same
+#customer created before in external event handler SignedUpHandler in customer service that triggered by Identity service
+@customerId =  d3d6c421-8b3c-4b6d-9ee9-1ac56d683301
 @state = valid
 
 ###
@@ -12,6 +16,7 @@ GET {{url}}/customers/{{customerId}}
 GET {{url}}/customers/{{customerId}}/state
 
 ###
+# Do CompleteCustomerRegistration
 POST {{url}}/customers
 Content-Type: application/json
 

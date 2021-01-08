@@ -1,6 +1,6 @@
 @url = http://localhost:5001
 @resourceId = 00000000-0000-0000-0000-000000000022
-@customerId = c8ce5e16-ef93-48c3-9876-0e0efc981a88
+@customerId = d3d6c421-8b3c-4b6d-9ee9-1ac56d683301
 @dateTime = 2020-01-10
 @tags = ["vehicle", "armor"]
 
@@ -27,7 +27,7 @@ Content-Type: application/json
   "resourceId": "{{resourceId}}",
   "customerId": "{{customerId}}",
   "dateTime": "{{dateTime}}",
-  "priority": 0
+  "priority": 4
 }
 
 ###

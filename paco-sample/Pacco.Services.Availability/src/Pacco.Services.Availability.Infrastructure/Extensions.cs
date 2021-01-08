@@ -24,7 +24,8 @@ using MicroBootstrap.MessageBrokers.Outbox;
 using MicroBootstrap.HTTP;
 using Pacco.Services.Availability.Infrastructure.Services.Clients;
 using Pacco.Services.Availability.Application.Services.Clients;
-using MicroBootstrap.Consul;
+using MicroBootstrap.Discovery.Consul.Consul;
+using MicroBootstrap.LoadBalancer.Fabio;
 
 namespace Pacco.Services.Availability.Infrastructure
 {
@@ -51,7 +52,8 @@ namespace Pacco.Services.Availability.Infrastructure
                     .AddExceptionToMessageMapper<ExceptionToMessageMapper>() //it only trigger in async way with rabbit for the web api make sense to throw or publish this rejected events maybe doesn't up to us
                     .AddMessageOutbox(o => o.AddMongo())
                     .AddHttpClient(clientName: "availability") //our abstraction top of httpclient
-                    .AddConsul();
+                    .AddConsul()
+                    .AddFabio();
         }
 
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
