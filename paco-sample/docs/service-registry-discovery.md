@@ -178,3 +178,23 @@ request.RequestUri = await GetRequestUriAsync(request, serviceName, uri);
 ```
 
 after we get service instances with filter with our `service key` we get list of all instances available and for example we pick first one with a client side load balancing (like round robin) and we just change the url from this key to actual ip address and redirect there and this solve the issues potential scale up and don't have knowledge where the microservices live abd we use key to group of services and consul use a key for responsibility of where the service is and what is the ip. consul is for service register and discovery or key value store but it can use load balancer too.
+
+### Scaling Services in our Consul Regisry
+
+[How to scale Docker Containers with Docker-Compose](https://brianchristner.io/how-to-scale-a-docker-container-with-docker-compose/)
+
+[https://pspdfkit.com/blog/2018/how-to-use-docker-compose-to-run-multiple-instances-of-a-service-in-development/](https://pspdfkit.com/blog/2018/how-to-use-docker-compose-to-run-multiple-instances-of-a-service-in-development/)
+
+[https://vegibit.com/dns-round-robin-in-docker/](https://vegibit.com/dns-round-robin-in-docker/)
+
+[Nginx Load Balancing and using with Docker](https://levelup.gitconnected.com/nginx-load-balancing-and-using-with-docker-7e16c49f5d9)
+
+[https://doc.traefik.io/traefik/user-guides/docker-compose/basic-example/](https://doc.traefik.io/traefik/user-guides/docker-compose/basic-example/)
+
+[https://doc.traefik.io/traefik/getting-started/quick-start/](https://doc.traefik.io/traefik/getting-started/quick-start/)
+
+[https://dev.to/cedrichopf/get-started-with-traefik-2-using-docker-compose-35f9](https://dev.to/cedrichopf/get-started-with-traefik-2-using-docker-compose-35f9)
+
+[https://johnny.am/blog/simple-traefik-setup-with-docker-x5](https://johnny.am/blog/simple-traefik-setup-with-docker-x5)
+
+[https://www.valentinog.com/blog/traefik/](https://www.valentinog.com/blog/traefik/)
