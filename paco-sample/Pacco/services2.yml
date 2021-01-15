@@ -1,0 +1,43 @@
+# https://github.com/dotnet/core/issues/4360#issuecomment-627792352
+# https://pm2.keymetrics.io/docs/usage/application-declaration/
+apps:
+  - name: api
+    script: ./start.sh
+    cwd: ../Pacco.APIGateway/scripts
+    max_restarts: 3
+  - name: availability
+    script: start.sh
+    cwd: ../Pacco.Services.Availability/scripts
+    max_restarts: 3
+  - name: customers
+    script: start.sh
+    cwd: ../Pacco.Services.Customers/scripts
+    max_restarts: 3
+  - name: deliveries
+    script: start.sh
+    cwd: ../Pacco.Services.Deliveries/scripts
+    max_restarts: 3
+  - name: identity
+    script: start.sh
+    cwd: ../Pacco.Services.Identity/scripts
+    max_restarts: 3
+  - name: operations
+    script: start.sh
+    cwd: ../Pacco.Services.Operations/scripts
+    max_restarts: 3
+  - name: orders
+    script: start.sh
+    cwd: ../Pacco.Services.Orders/scripts
+    max_restarts: 3
+  - name: parcels
+    script: start.sh
+    cwd: ../Pacco.Services.Parcels/scripts
+    max_restarts: 3
+  - name: pricing
+    script: start.sh
+    cwd: ../Pacco.Services.Pricing/scripts
+    max_restarts: 3
+  - name: vehicles
+    script: start.sh
+    cwd: ../Pacco.Services.Vehicles/scripts
+    max_restarts: 3

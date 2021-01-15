@@ -19,6 +19,7 @@ namespace Pacco.Services.OrderMaker.Sagas
         ISagaAction<ParcelAddedToOrder>,
         ISagaAction<VehicleAssignedToOrder>,
         ISagaAction<OrderApproved>
+        //,ISagaAction<ApproveOrderRejected>
     {
         private const string SagaHeader = "Saga";
         private readonly IResourceReservationsService _resourceReservationsService;
@@ -45,14 +46,15 @@ namespace Pacco.Services.OrderMaker.Sagas
         public override SagaId ResolveId(object message, ISagaContext context)
             => message switch
             {
-                MakeOrder m => (SagaId) m.OrderId.ToString(),
-                OrderCreated m => (SagaId) m.OrderId.ToString(),
-                ParcelAddedToOrder m => (SagaId) m.OrderId.ToString(),
-                VehicleAssignedToOrder m => (SagaId) m.OrderId.ToString(),
+                MakeOrder m => (SagaId)m.OrderId.ToString(),
+                OrderCreated m => (SagaId)m.OrderId.ToString(),
+                ParcelAddedToOrder m => (SagaId)m.OrderId.ToString(),
+                VehicleAssignedToOrder m => (SagaId)m.OrderId.ToString(),
                 OrderApproved m => m.OrderId.ToString(),
                 _ => base.ResolveId(message, context)
             };
 
+        //Step 1
         public async Task HandleAsync(MakeOrder message, ISagaContext context)
         {
             _logger.LogInformation($"Started a saga for order: '{message.OrderId}'.");
@@ -68,6 +70,7 @@ namespace Pacco.Services.OrderMaker.Sagas
                 });
         }
 
+        //Step 2
         public async Task HandleAsync(OrderCreated message, ISagaContext context)
         {
             var tasks = Data.ParcelIds.Select(id =>
@@ -81,6 +84,7 @@ namespace Pacco.Services.OrderMaker.Sagas
             await Task.WhenAll(tasks);
         }
 
+        //Step 3
         public async Task HandleAsync(ParcelAddedToOrder message, ISagaContext context)
         {
             Data.AddedParcelIds.Add(message.ParcelId);
@@ -109,6 +113,7 @@ namespace Pacco.Services.OrderMaker.Sagas
                 });
         }
 
+        //Step 4
         public Task HandleAsync(VehicleAssignedToOrder message, ISagaContext context)
             => _publisher.PublishAsync(new ReserveResource(Data.VehicleId, Data.CustomerId,
                     Data.ReservationDate, Data.ReservationPriority),
@@ -118,6 +123,7 @@ namespace Pacco.Services.OrderMaker.Sagas
                     [SagaHeader] = SagaStates.Pending.ToString()
                 });
 
+        //Step 5
         public async Task HandleAsync(OrderApproved message, ISagaContext context)
         {
             _logger.LogInformation($"Completed a saga for order: '{message.OrderId}'.");

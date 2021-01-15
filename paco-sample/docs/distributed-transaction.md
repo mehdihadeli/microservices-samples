@@ -102,6 +102,8 @@ saga could built top of event choregraphy approach and the other hand we just pl
 
 [MassTransit State Machine Sagas using Automatonymous](https://www.youtube.com/watch?v=2bPumhSTigw)
 
+[Effective Microservice Communication & Conversation Patterns with Jimmy Bogard, July 2020](https://www.youtube.com/watch?v=oNjJ5fTASJo)
+
 process manager has state and can save it in its internal database or caching mechanism. we could have some sort of of state machine for keep track of what we actually do. so we can save any thing we want, maybe for a long running process we need to store some user detail and some addresses so we have `state` and `data` and we can manage whole process based on data and state.
 these are two separate concept however bu if we look for some info about saga sometimes what false means about saga is mixing between something for `manage our process` and eventually do `compensation`.
 what we mean will be some sort of  of mixing so when we talk about saga our mean is `saga / process manager` because we will be using both, `saga routing compensation` mechanism along with `process manager` state machine and this data for process management

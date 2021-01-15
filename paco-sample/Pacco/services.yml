@@ -1,3 +1,5 @@
+# https://pm2.keymetrics.io/docs/usage/application-declaration/
+# https://github.com/dotnet/core/issues/4360#issuecomment-627792352
 apps:
   - name: api
     script: dotnet run

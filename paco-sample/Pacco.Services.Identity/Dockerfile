@@ -1,4 +1,5 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+RUN curl https://api.nuget.org/v3/index.json -k
 WORKDIR /app
 COPY . .
 RUN dotnet publish src/Pacco.Services.Identity.Api -c release -o out

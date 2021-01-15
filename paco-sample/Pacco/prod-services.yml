@@ -1,3 +1,5 @@
+# https://github.com/dotnet/core/issues/4360#issuecomment-627792352
+# https://pm2.keymetrics.io/docs/usage/application-declaration/
 apps:
   - name: api
     script: dotnet Pacco.APIGateway.dll

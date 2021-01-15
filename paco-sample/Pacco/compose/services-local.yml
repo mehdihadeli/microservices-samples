@@ -62,7 +62,7 @@ services:
       - deliveries-service
       - identity-service
       - orders-service
-      - ordermaker-service
+      # - ordermaker-service
       - parcels-service
       - vehicles-service
 
@@ -75,14 +75,14 @@ services:
     networks:
       - pacco
 
-  ordermaker-service:
-    build: ../../Pacco.Services.OrderMaker
-    container_name: ordermaker-service
-    restart: unless-stopped
-    ports:
-      - 5015:80
-    networks:
-      - pacco
+  # ordermaker-service:
+  #   build: ../../Pacco.Services.OrderMaker
+  #   container_name: ordermaker-service
+  #   restart: unless-stopped
+  #   ports:
+  #     - 5015:80
+  #   networks:
+  #     - pacco
 
   parcels-service:
     build: ../../Pacco.Services.Parcels

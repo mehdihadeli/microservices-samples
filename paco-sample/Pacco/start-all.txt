@@ -1,0 +1,10 @@
+installing ubuntu .net core 3.1 
+
+https://github.com/dotnet/core/issues/4360#issuecomment-627792352
+
+
+Using pm2 for .net core
+
+https://pm2.keymetrics.io/docs/usage/application-declaration/
+
+pm2 start services.yml
