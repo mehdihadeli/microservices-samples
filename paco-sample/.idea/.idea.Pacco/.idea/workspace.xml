@@ -35,37 +35,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5bcca50-5cfd-4cd4-bfe2-82db32e7fb30" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.run/Template Compound.run.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.APIGateway.Ocelot/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.APIGateway.Ocelot/.vscode/launch.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.APIGateway.Ocelot/Pacco-ocelot.rest" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.APIGateway.Ocelot/Pacco-ocelot.rest" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.APIGateway.Ocelot/src/Pacco.APIGateway.Ocelot/Infrastructure/AsyncRoutesMiddleware.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.APIGateway.Ocelot/src/Pacco.APIGateway.Ocelot/Infrastructure/AsyncRoutesMiddleware.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.APIGateway.Ocelot/src/Pacco.APIGateway.Ocelot/Pacco.APIGateway.Ocelot.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.APIGateway.Ocelot/src/Pacco.APIGateway.Ocelot/Pacco.APIGateway.Ocelot.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.APIGateway.Ocelot/src/Pacco.APIGateway.Ocelot/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.APIGateway.Ocelot/src/Pacco.APIGateway.Ocelot/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.APIGateway.Ocelot/src/Pacco.APIGateway.Ocelot/ocelot.json" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.APIGateway.Ocelot/src/Pacco.APIGateway.Ocelot/ocelot.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Api/Pacco.Services.Availability.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Api/Pacco.Services.Availability.Api.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Api/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Application/Commands/Handlers/AddResourceHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Application/Commands/Handlers/AddResourceHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Application/IntegrationEvents/External/Handlers/CustomerCreatedHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Application/IntegrationEvents/External/Handlers/CustomerCreatedHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Application/Pacco.Services.Availability.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Application/Pacco.Services.Availability.Application.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Core/Pacco.Services.Availability.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Core/Pacco.Services.Availability.Core.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Infrastructure/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Infrastructure/Extensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Infrastructure/Pacco.Services.Availability.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Infrastructure/Pacco.Services.Availability.Infrastructure.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Infrastructure/Services/MessageBroker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Infrastructure/Services/MessageBroker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Handlers/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Handlers/Extensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Handlers/GenericCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Handlers/GenericCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Handlers/GenericEventHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Handlers/GenericEventHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Handlers/GenericRejectedEventHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Handlers/GenericRejectedEventHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Hubs/PaccoHub.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Hubs/PaccoHub.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Infrastructure/ExceptionToResponseMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Infrastructure/ExceptionToResponseMapper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Infrastructure/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Infrastructure/Extensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Infrastructure/Subscriptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Infrastructure/Subscriptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Pacco.Services.Operations.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Pacco.Services.Operations.Api.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Queries/GetOperation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Queries/GetOperation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Types/Command.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Types/Command.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Types/Event.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Types/Event.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Types/RejectedEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/Types/RejectedEvent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/messages.json" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Operations/src/Pacco.Services.Operations.Api/messages.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Pacco/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pacco/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Pacco/.idea/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pacco/.idea/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Pacco/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pacco/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/Pacco.Services.Availability.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/Pacco.Services.Availability.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pacco.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/saga-and-process-manager.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/saga-and-process-manager.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -322,6 +297,8 @@
       <updated>1608889779556</updated>
       <workItem from="1608889787303" duration="1337000" />
       <workItem from="1608892980652" duration="3462000" />
+      <workItem from="1610914738186" duration="196000" />
+      <workItem from="1610915646015" duration="140000" />
     </task>
     <servers />
   </component>

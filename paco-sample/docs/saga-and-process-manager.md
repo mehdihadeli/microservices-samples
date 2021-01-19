@@ -6,6 +6,10 @@ we can start all of the our services with using our [docker-compose](../Pacco/co
 
 [Effective Microservice Communication & Conversation Patterns with Jimmy Bogard, July 2020](https://www.youtube.com/watch?v=oNjJ5fTASJo)
 
+[Life Beyond Distributed Transactions: An Apostate's Implementation - A Primer](https://jimmybogard.com/life-beyond-transactions-implementation-primer/)
+
+[Life Beyond Distributed Transactions: An Apostate's Implementation - Document Coordination](https://jimmybogard.com/life-beyond-distributed-transactions-an-apostates-implementation-aggregate-coordination/)
+
 order-maker is some sort of jobs for deal with sagas, idea about order maker is that we could imagine the situation which we have new business requirement so business would like to have this functionality for creating `whole order` for `transportation` of particular `parcel` fully automatically ony thing that we need to do as a user is defining parcel within our pacco service and click send with a `MakeOrder (C)` command:
 
 ``` csharp
@@ -510,7 +514,8 @@ public class GenericCommandHandler<T> : ICommandHandler<T> where T : class, ICom
 ```
 
 when we use distributed transaction? Ideally never. try to re modeling business process and we can somehow encapsulated in a single service and we don't have to  deal with event choreography nor saga process manager because you can jus see there is quite a lot of code added and there is additional application logic has to be written. there some potential edge cases related to handling this rejected event so if one of service does fail we need somehow send a compensation for example command for rollback this action.
-we use saga when we have some sort of long living business transaction and example is the situation which we have additional business requirement let say requirement is following:
+
+besides this particular usage because is for short living transaction we should also consider saga when saga is natural choice when we have some sort of long living business transaction and example is the situation which we have additional business requirement let say requirement is following:
 
 we have a customer if this customer will create 10 order in our system we would like to give him a discount this is most of the cases will be a business process that would actually last for quite a long time because this might take for some customer take a week and some customer 1 year so basically we deal with such approach and we create a job and this job run in midnight and create a query that will look for the customers that have this threshold reached so this 10 order and we give them discount.
 we could create once user register in our system we could create him a saga so saga will create for each customer so when ever customer finish his order we simply subscribe to this saga in the particular event for example order completed and inside saga we keep number of `completed orders` and we simply interment this and once we reach this particular threshold let say 10 orders the saga send a command to discount factors service and this is how we can deal with a long time process and this is more natural of course saga itself is not needed in this particular case because this could be achieve also using event choregraphy in this cases we could have a event handler and this is very nice place to put such a business logic
