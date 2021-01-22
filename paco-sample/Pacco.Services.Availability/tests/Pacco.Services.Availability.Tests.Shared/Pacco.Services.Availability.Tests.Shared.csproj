@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.11"/>
+    <PackageReference Include="MartinCostello.Logging.XUnit" Version="0.1.0"/>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+    <ProjectReference Include="..\..\..\..\..\MicroBootstrap\src\MicroBootstrap\MicroBootstrap.csproj"/>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Release'">
+    <PackageReference Include="MicroBootstrap" Version="*-*" allowedVersions="*-*"/>
+  </ItemGroup>
+</Project>

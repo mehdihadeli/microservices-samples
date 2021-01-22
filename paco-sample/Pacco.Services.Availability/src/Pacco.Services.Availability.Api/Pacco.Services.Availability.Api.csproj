@@ -18,7 +18,8 @@
   <ItemGroup Condition="'$(Configuration)' == 'Debug'">
     <ProjectReference Include="..\..\..\..\..\MicroBootstrap\src\MicroBootstrap\MicroBootstrap.csproj" />
   </ItemGroup>
-    <ItemGroup Condition="'$(Configuration)' == 'Release'">
+  
+  <ItemGroup Condition="'$(Configuration)' == 'Release'">
     <PackageReference Include="MicroBootstrap" Version="*-*" allowedVersions="*-*"/>
   </ItemGroup>
 

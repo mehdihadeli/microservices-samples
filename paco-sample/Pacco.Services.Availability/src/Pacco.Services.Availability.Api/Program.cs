@@ -5,11 +5,11 @@ using MicroBootstrap.Logging;
 using MicroBootstrap.Vault;
 using MicroBootstrap.WebApi;
 using MicroBootstrap.WebApi.CQRS;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Pacco.Services.Availability.Application;
 using Pacco.Services.Availability.Application.Commands;
 using Pacco.Services.Availability.Application.DTO;
@@ -20,8 +20,11 @@ namespace Pacco.Services.Availability.Api
 {
     public class Program
     {
+        //https://andrewlock.net/exploring-the-new-project-file-program-and-the-generic-host-in-asp-net-core-3/
+        //https://andrewlock.net/ihostingenvironment-vs-ihost-environment-obsolete-types-in-net-core-3/
+        //https://andrewlock.net/the-asp-net-core-generic-host-namespace-clashes-and-extension-methods/
         public static async Task Main(string[] args)
-            => await CreateWebHostBuilder(args)
+            => await CreateHostBuilder(args)
                 .Build()
                 .RunAsync();
 
@@ -39,32 +42,37 @@ namespace Pacco.Services.Availability.Api
         // controller should be very thin and should be no validation or logic, it should be a simply take the request and process this using some of
         // our component in the application, in cqrs its job is only execute dispatcher
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
-        => WebHost.CreateDefaultBuilder(args)
-            .ConfigureServices(services => services
-                .AddWebApi()
-                .AddApplication()
-                .AddInfrastructure())
-            .Configure((IApplicationBuilder app) => app
-                .UseInfrastructure()
-                // execute same code within controller, either invoke IQueryDispatcher orr ICommandDispatcher for sending command and query
-                // if we use get then query dispatcher will be performed 
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        => Host.CreateDefaultBuilder(args)
+         .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.ConfigureServices(services => services.AddWebApi().AddApplication().AddInfrastructure())
+                    //https://andrewlock.net/exploring-program-and-startup-in-asp-net-core-2-preview1-2/
+                    //https://www.programmingwithwolfgang.com/configure-asp-net-core-mvc/
+                    //https://docs.microsoft.com/en-us/dotnet/core/extensions/configuration-providers
+                     .Configure((WebHostBuilderContext hostingContext, IApplicationBuilder app) => app
+                     .UseInfrastructure()
+                     // execute same code within controller, either invoke IQueryDispatcher orr ICommandDispatcher for sending command and query
+                     // if we use get then query dispatcher will be performed 
 
-                //web api endpoints which works synchronously but we also have asynchronous messages with use SubscribeCommand and SubscribeEvent in infra layer so we able to receive this messages comming 
-                //from message broker and process them asychrosuly 
-                .UseDispatcherEndpoints(endpoints => endpoints
-                    .Get("", ctx => ctx.Response.WriteAsync(ctx.RequestServices.GetService<AppOptions>().Name))
-                    .Get<GetResources, IEnumerable<ResourceDto>>("resources")
-                    .Get<GetResource, ResourceDto>("resources/{resourceId}") // since we want to invoke our dispatcher behind the scenes we can use generic get for pass query (input), output
-                    .Post<AddResource>("resources",
-                        afterDispatch: (cmd, ctx) =>
-                        {
-                            return ctx.Response.Created($"resources/{cmd.ResourceId}");
-                        })
-                    .Post<ReserveResource>("resources/{resourceId}/reservations/{dateTime}") // for post with same id we get 500 internal error but it is actually user abd data and bad request
-                    ))
-            .UseLogging()
-            .UseVault();
+                     //web api endpoints which works synchronously but we also have asynchronous messages with use SubscribeCommand and SubscribeEvent in infra layer so we able to receive this messages comming 
+                     //from message broker and process them asychrosuly 
+                     .UseDispatcherEndpoints(endpoints => endpoints
+                         .Get("", ctx => ctx.Response.WriteAsync(ctx.RequestServices.GetService<AppOptions>().Name))
+                         .Get<GetResources, IEnumerable<ResourceDto>>("resources")
+                         .Get<GetResource, ResourceDto>("resources/{resourceId}") // since we want to invoke our dispatcher behind the scenes we can use generic get for pass query (input), output
+                         .Post<AddResource>("resources",
+                             afterDispatch: (cmd, ctx) =>
+                             {
+                                 var env = hostingContext.HostingEnvironment.EnvironmentName;
+                                 return ctx.Response.Created($"resources/{cmd.ResourceId}");
+                             })
+                         .Post<ReserveResource>("resources/{resourceId}/reservations/{dateTime}") // for post with same id we get 500 internal error but it is actually user abd data and bad request
+                         )
+                        )
+                        .UseLogging()
+                        .UseVault();
+                });
 
         // using controller instead of terminal middlewares
         // public static IWebHostBuilder CreateWebHostBuilder(string[] args)
@@ -83,5 +91,6 @@ namespace Pacco.Services.Availability.Api
         //         app.UseRouting()
         //         .UseEndpoints(e => e.MapControllers());
         //     });
+
     }
 }
