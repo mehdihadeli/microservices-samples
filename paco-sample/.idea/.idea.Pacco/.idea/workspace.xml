@@ -36,8 +36,17 @@
   <component name="ChangeListManager">
     <list default="true" id="a5bcca50-5cfd-4cd4-bfe2-82db32e7fb30" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Pacco/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pacco/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Pacco/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pacco/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pacco.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Pacco/.idea/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pacco/.idea/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Api/Pacco.Services.Availability.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Api/Pacco.Services.Availability.Api.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Application/Pacco.Services.Availability.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Application/Pacco.Services.Availability.Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Core/Pacco.Services.Availability.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Core/Pacco.Services.Availability.Core.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Infrastructure/Pacco.Services.Availability.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/src/Pacco.Services.Availability.Infrastructure/Pacco.Services.Availability.Infrastructure.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/tests/Pacco.Services.Availability.Tests.EndToEnd/Pacco.Services.Availability.Tests.EndToEnd.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/tests/Pacco.Services.Availability.Tests.EndToEnd/Pacco.Services.Availability.Tests.EndToEnd.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/tests/Pacco.Services.Availability.Tests.Integration/Pacco.Services.Availability.Tests.Integration.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/tests/Pacco.Services.Availability.Tests.Integration/Pacco.Services.Availability.Tests.Integration.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/tests/Pacco.Services.Availability.Tests.Performance/Pacco.Services.Availability.Tests.Performance.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/tests/Pacco.Services.Availability.Tests.Performance/Pacco.Services.Availability.Tests.Performance.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/tests/Pacco.Services.Availability.Tests.Shared/Pacco.Services.Availability.Tests.Shared.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/tests/Pacco.Services.Availability.Tests.Shared/Pacco.Services.Availability.Tests.Shared.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pacco.Services.Availability/tests/Pacco.Services.Availability.Tests.Unit/Pacco.Services.Availability.Tests.Unit.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pacco.Services.Availability/tests/Pacco.Services.Availability.Tests.Unit/Pacco.Services.Availability.Tests.Unit.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/end-to-end-testing.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/end-to-end-testing.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +63,7 @@
       <option value="$PROJECT_DIR$/Pacco.Services.Availability/tests/Pacco.Services.Availability.Tests.EndToEnd/UnitTest1.cs" />
       <option value="$PROJECT_DIR$/Pacco.Services.Availability/tests/Pacco.Services.Availability.Tests.Shared/Class1.cs" />
       <option value="$PROJECT_DIR$/Pacco.Services.Availability/tests/Pacco.Services.Availability.Tests.Performance/UnitTest1.cs" />
+      <option value="$PROJECT_DIR$/Pacco.Services.Availability/tests/Pacco.Services.Availability.Tests.Integration/Async/AddResourceTests.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1m8ywncsu1Y0WMLjAbwRNK8lQ8y" />
@@ -300,6 +310,7 @@
       <workItem from="1610914738186" duration="196000" />
       <workItem from="1610915646015" duration="140000" />
       <workItem from="1611079367074" duration="362000" />
+      <workItem from="1611429371771" duration="215000" />
     </task>
     <servers />
   </component>

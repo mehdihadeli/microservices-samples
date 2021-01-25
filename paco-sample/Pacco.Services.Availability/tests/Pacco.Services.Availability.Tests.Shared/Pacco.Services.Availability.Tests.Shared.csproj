@@ -1,15 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.11"/>
-    <PackageReference Include="MartinCostello.Logging.XUnit" Version="0.1.0"/>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.11" />
+    <PackageReference Include="MartinCostello.Logging.XUnit" Version="0.1.0" />
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)' == 'Debug'">
-    <ProjectReference Include="..\..\..\..\..\MicroBootstrap\src\MicroBootstrap\MicroBootstrap.csproj"/>
+    <ProjectReference Include="..\..\..\..\..\MicroBootstrap\src\MicroBootstrap\MicroBootstrap.csproj" />
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)' == 'Release'">
-    <PackageReference Include="MicroBootstrap" Version="*-*" allowedVersions="*-*"/>
+    <PackageReference Include="MicroBootstrap" Version="*-*" allowedVersions="*-*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Pacco.Services.Availability.Infrastructure\Pacco.Services.Availability.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Pacco.Services.Availability.Application\Pacco.Services.Availability.Application.csproj" />
+    <ProjectReference Include="..\..\src\Pacco.Services.Availability.Core\Pacco.Services.Availability.Core.csproj" />
   </ItemGroup>
 </Project>

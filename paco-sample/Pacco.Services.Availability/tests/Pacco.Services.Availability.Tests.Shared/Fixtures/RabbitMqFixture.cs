@@ -21,8 +21,7 @@ namespace Pacco.Services.Availability.Tests.Shared.Fixtures
             var options = OptionsHelper.GetOptions<RabbitMqOptions>("rabbitMq");
             var connectionFactory = new ConnectionFactory
             {
-                HostName = options.HostNames?.FirstOrDefault(
-                    ),
+                HostName = options.HostNames?.FirstOrDefault(),
                 VirtualHost = options.VirtualHost,
                 Port = options.Port,
                 UserName = options.Username,

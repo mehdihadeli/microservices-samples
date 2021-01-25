@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
@@ -12,7 +12,7 @@
     <PackageReference Include="Shouldly" Version="4.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Pacco.Services.Availability.Core\Pacco.Services.Availability.Core.csproj" />
     <ProjectReference Include="..\..\src\Pacco.Services.Availability.Application\Pacco.Services.Availability.Application.csproj" />
+    <ProjectReference Include="..\..\src\Pacco.Services.Availability.Core\Pacco.Services.Availability.Core.csproj" />
   </ItemGroup>
 </Project>

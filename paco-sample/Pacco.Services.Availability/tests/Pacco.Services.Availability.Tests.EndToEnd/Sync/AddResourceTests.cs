@@ -79,14 +79,10 @@ namespace Pacco.Services.Availability.Tests.EndToEnd.Sync
         }
 
 
-
         public void Dispose()
         {
             _mongoDbFixture.Dispose();
         }
-
-        private static StringContent GetContent(object value)
-            => new StringContent(JsonConvert.SerializeObject(value), Encoding.UTF8, "application/json");
 
     }
 }

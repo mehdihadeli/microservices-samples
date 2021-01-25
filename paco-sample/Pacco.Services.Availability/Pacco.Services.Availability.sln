@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pacco.Services.Availability
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pacco.Services.Availability.Tests.Shared", "tests\Pacco.Services.Availability.Tests.Shared\Pacco.Services.Availability.Tests.Shared.csproj", "{8DE8D056-0DE8-440C-82BD-F50983110813}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pacco.Services.Availability.Tests.Integration", "tests\Pacco.Services.Availability.Tests.Integration\Pacco.Services.Availability.Tests.Integration.csproj", "{8FB1AEE3-226A-47E0-8834-8E595DF9CAAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -132,6 +134,18 @@ Global
 		{8DE8D056-0DE8-440C-82BD-F50983110813}.Release|x64.Build.0 = Release|Any CPU
 		{8DE8D056-0DE8-440C-82BD-F50983110813}.Release|x86.ActiveCfg = Release|Any CPU
 		{8DE8D056-0DE8-440C-82BD-F50983110813}.Release|x86.Build.0 = Release|Any CPU
+		{8FB1AEE3-226A-47E0-8834-8E595DF9CAAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FB1AEE3-226A-47E0-8834-8E595DF9CAAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FB1AEE3-226A-47E0-8834-8E595DF9CAAA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8FB1AEE3-226A-47E0-8834-8E595DF9CAAA}.Debug|x64.Build.0 = Debug|Any CPU
+		{8FB1AEE3-226A-47E0-8834-8E595DF9CAAA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8FB1AEE3-226A-47E0-8834-8E595DF9CAAA}.Debug|x86.Build.0 = Debug|Any CPU
+		{8FB1AEE3-226A-47E0-8834-8E595DF9CAAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FB1AEE3-226A-47E0-8834-8E595DF9CAAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FB1AEE3-226A-47E0-8834-8E595DF9CAAA}.Release|x64.ActiveCfg = Release|Any CPU
+		{8FB1AEE3-226A-47E0-8834-8E595DF9CAAA}.Release|x64.Build.0 = Release|Any CPU
+		{8FB1AEE3-226A-47E0-8834-8E595DF9CAAA}.Release|x86.ActiveCfg = Release|Any CPU
+		{8FB1AEE3-226A-47E0-8834-8E595DF9CAAA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{72D1E9E7-EC65-4BF4-947B-3AA8D4FE6FE6} = {8B5081DF-A569-42A4-B3A0-2B98599DD75D}
@@ -142,5 +156,6 @@ Global
 		{18A62A89-A61F-4065-B74C-318BDB10E01D} = {1E2041D7-8F16-4785-BFBF-BAE65512457C}
 		{9E8FB338-147C-40FD-84C2-B8CA60757DC9} = {1E2041D7-8F16-4785-BFBF-BAE65512457C}
 		{8DE8D056-0DE8-440C-82BD-F50983110813} = {1E2041D7-8F16-4785-BFBF-BAE65512457C}
+		{8FB1AEE3-226A-47E0-8834-8E595DF9CAAA} = {1E2041D7-8F16-4785-BFBF-BAE65512457C}
 	EndGlobalSection
 EndGlobal

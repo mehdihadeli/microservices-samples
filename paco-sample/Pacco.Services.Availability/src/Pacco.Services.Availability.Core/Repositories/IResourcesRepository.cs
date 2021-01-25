@@ -1,6 +1,8 @@
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Pacco.Services.Availability.Core.Entities;
 
+[assembly: InternalsVisibleTo("Pacco.Services.Availability.Tests.Shared")]
 namespace Pacco.Services.Availability.Core.Repositories
 {
     // we create repository for our aggregate to crud operations 

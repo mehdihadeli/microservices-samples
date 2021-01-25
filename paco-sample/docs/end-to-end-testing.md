@@ -14,7 +14,7 @@
 
 [Subcutaneous Testing in ASP.NET Core](https://josephwoodward.co.uk/2019/03/subcutaneous-testing-asp-net-core)
 
-for end-to-end test will use microsoft library `Microsoft.AspNetCore.MVC.Testing` and `Microsoft.AspNetCore.TestHost`, we able to run our web api in memory and just send http request to this api and validate responses or checkout data in database and we want application start along with database and another required components.
+for end-to-end test will use microsoft library `Microsoft.AspNetCore.MVC.Testing` and `Microsoft.AspNetCore.TestHost`, we able to run our web api in memory and just send http request to this api and validate responses or checkout data in database and we want application start along with database and another required components. in this test we just test sync apis.
 
 ```xml
   <ItemGroup>
@@ -197,4 +197,6 @@ let add a break point on test and run again we can see when this test is running
 
 if we want to test get endpoint we can do the same thing but the steps are in different order, first we need to use MongodbFixture to insert the data and then we use web api and call our get for our test.
 
-In this point we do have like test for `web api` or (Sync) but we also need to consider the separated test for our handlers called by rabbitmq (Async)
+In this point we do have like test for `web api` or (Sync) we also need to consider the separated test for our `handlers` called by rabbitmq (Async)(it is smallest than e2e and we test specific part like a unit in our service with all its dependencies) . Integration tests are per service level (e.g. whether the service publishes/subscribes a particular event), e2e could be applied to multiple services (to verify some scenario).
+
+we can test async apis also here but it just needs a bit of tricks like using TCS and some other patterns to wait for async events and that kind of stuff.
