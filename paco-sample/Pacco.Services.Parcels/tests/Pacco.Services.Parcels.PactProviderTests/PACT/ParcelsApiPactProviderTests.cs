@@ -13,19 +13,10 @@ namespace Pacco.Services.Parcels.PactProviderTests.PACT
 {
     public class ParcelsApiPactProviderTests : IDisposable
     {
-        [Fact]
-        public async Task Pact_Should_Be_Verified()
-        {
-            await _mongoDbFixture.InsertAsync(Parcel);
-            
-            await PactVerifier
-                .Create(_httpClient)
-                .Between("orders", "parcels")
-                .RetrievedFromFile(@"../../../../../../pacts")
-                .VerifyAsync();
-        }
-
-        #region ARRANGE
+        
+        private readonly MongoDbFixture<ParcelDocument, Guid> _mongoDbFixture;
+        private readonly HttpClient _httpClient;
+        private bool _disposed = false;
 
         private readonly ParcelDocument Parcel = new ParcelDocument
         {
@@ -36,16 +27,24 @@ namespace Pacco.Services.Parcels.PactProviderTests.PACT
             CreatedAt = DateTime.Now
         };
         
-        private readonly MongoDbFixture<ParcelDocument, Guid> _mongoDbFixture;
-        private readonly HttpClient _httpClient;
-        private bool _disposed = false;
-
         public ParcelsApiPactProviderTests()
         {
             _mongoDbFixture = new MongoDbFixture<ParcelDocument, Guid>("test-parcels-service", "parcels");
             var testServer = new TestServer(Program.GetWebHostBuilder(new string[0]));
             testServer.AllowSynchronousIO = true;
             _httpClient = testServer.CreateClient();
+        }
+
+        [Fact]
+        public async Task Pact_Should_Be_Verified()
+        {
+            await _mongoDbFixture.InsertAsync(Parcel);
+            
+            await PactVerifier
+                .Create(_httpClient)
+                .Between("orders", "parcels")
+                .RetrievedViaHttp(@"http://localhost:9292/pacts/provider/parcels/consumer/orders/latest")
+                .VerifyAsync();
         }
 
         protected virtual void Dispose(bool disposing)
@@ -66,6 +65,5 @@ namespace Pacco.Services.Parcels.PactProviderTests.PACT
             Dispose(true);
         }
 
-        #endregion
     }
 }

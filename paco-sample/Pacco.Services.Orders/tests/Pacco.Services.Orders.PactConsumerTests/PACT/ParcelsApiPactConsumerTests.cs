@@ -9,8 +9,8 @@ namespace Pacco.Services.Orders.PactConsumerTests.PACT
 {
     public class ParcelsApiPactConsumerTests
     {
-        private const string ParcelId = "c68a24ea-384a-4fdc-99ce-8c9a28feac64"; 
-        
+        private const string ParcelId = "c68a24ea-384a-4fdc-99ce-8c9a28feac64";
+
         [Fact]
         public async Task Given_Valid_Parcel_Id_Parcel_Should_Be_Returned()
         {
@@ -22,7 +22,7 @@ namespace Pacco.Services.Orders.PactConsumerTests.PACT
 
             await PactMaker
                 .Create(options)
-                .Between("orders", "parcels")
+                .Between("orders", "parcels") //consumer --> provider
                 .WithHttpInteraction(b => b
                     .Given("Existing parcel")
                     .UponReceiving("A GET request to retrieve parcel details")
@@ -33,7 +33,8 @@ namespace Pacco.Services.Orders.PactConsumerTests.PACT
                         .WithHeader("Content-Type", "application/json")
                         .WithStatusCode(HttpStatusCode.OK)
                         .WithBody<ParcelDto>()))
-                .PublishedAsFile("../../../../../../pacts")
+                //.PublishedAsFile("../../../../../../pacts")
+                .PublishedViaHttp("http://localhost:9292/pacts/provider/parcels/consumer/orders/version/1.2.104", HttpMethod.Put)
                 .MakeAsync();
         }
     }

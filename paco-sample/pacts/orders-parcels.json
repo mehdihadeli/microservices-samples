@@ -1,0 +1,34 @@
+{
+  "consumer": {
+    "name": "orders"
+  },
+  "provider": {
+    "name": "parcels"
+  },
+  "interactions": [
+    {
+      "provider_state": "Existing parcel",
+      "description": "A GET request to retrieve parcel details",
+      "request": {
+        "method": "GET",
+        "path": "/parcels/c68a24ea-384a-4fdc-99ce-8c9a28feac64"
+      },
+      "response": {
+        "headers": {
+          "content-Type": "application/json"
+        },
+        "status": 200,
+        "body": {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "name": null,
+          "variant": null,
+          "size": null
+        }
+      }
+    }
+  ],
+  "options": {
+    "ignoreCasing": true,
+    "ignoreContractValues": true
+  }
+}
