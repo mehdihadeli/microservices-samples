@@ -40,11 +40,11 @@ namespace Pacco.Services.Availability.Tests.Performance
 
             var scenario = ScenarioBuilder.CreateScenario("GET resources", new[] { step })
                 //.WithDuration(TimeSpan.FromSeconds(10))
-                .WithWarmUpDuration(TimeSpan.FromSeconds(duration))
+                .WithWarmUpDuration(TimeSpan.FromSeconds(0))
                 .WithLoadSimulations(new[]
                 {
                     //Simulation.InjectPerSec(rate: 100, during: TimeSpan.FromSeconds(30)),
-                    Simulation.KeepConstant(copies: 1, during: TimeSpan.FromSeconds(2))
+                    Simulation.KeepConstant(copies: 1, during: TimeSpan.FromSeconds(duration))
                 });
 
             var pingPlugin = new PingPlugin(pingPluginConfig);

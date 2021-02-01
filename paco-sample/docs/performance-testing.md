@@ -56,23 +56,23 @@ public void get_resources()
     var pingPluginConfig = PingPluginConfig.CreateDefault(new[] { url });
 
     var scenario = ScenarioBuilder.CreateScenario("GET resources", new[] { step })
-        .WithoutWarmUp()
-        .WithWarmUpDuration(TimeSpan.FromSeconds(duration))
+        //.WithDuration(TimeSpan.FromSeconds(10))
+        .WithWarmUpDuration(TimeSpan.FromSeconds(0))
         .WithLoadSimulations(new[]
         {
             //Simulation.InjectPerSec(rate: 100, during: TimeSpan.FromSeconds(30)),
-            Simulation.KeepConstant(copies: 1, during: TimeSpan.FromSeconds(2))
+            Simulation.KeepConstant(copies: 1, during: TimeSpan.FromSeconds(duration))
         });
 
     var pingPlugin = new PingPlugin(pingPluginConfig);
 
     // act
-    var nodeStats = NBomberRunner.RegisterScenarios(scenario)
+    NodeStats nodeStats = NBomberRunner.RegisterScenarios(scenario)
     .WithWorkerPlugins(pingPlugin)
     .Run();
 
     //var stepStats = nodeStats.ScenarioStats[0].StepStats[0]; //get info about our first step
-     StepStats stepStats = nodeStats.ScenarioStats[0].StepStats.First(q => q.StepName == stepName); // get info about our int step
+    StepStats stepStats = nodeStats.ScenarioStats[0].StepStats.First(q => q.StepName == stepName); // get info about our int step
 
     // assert
     stepStats.OkCount.ShouldBeGreaterThan(expectedRps * duration);
